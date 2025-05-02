@@ -9,6 +9,8 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_8h3d3"]
 
 [node name="Area_Piece" type="Area3D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_cwjv0")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
@@ -17,7 +19,9 @@ mesh = SubResource("BoxMesh_2c62f")
 [node name="Collision_Right" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 shape = SubResource("BoxShape3D_gyfs4")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Collision_Bottom" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58932e-08, -1, 0)
 shape = SubResource("BoxShape3D_8h3d3")
+debug_color = Color(0, 0.6, 0.7, 0.42)

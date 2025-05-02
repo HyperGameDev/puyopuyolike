@@ -22,8 +22,11 @@ enum piece_colors {GARBAGE,RED,YELLOW,GREEN,BLUE,PURPLE}
 enum walled_state {NEITHER,LEFT,RIGHT}
 
 func _ready() -> void:
-	area_entered.connect(_on_area_entered)
-	area_exited.connect(_on_area_exited)
+	%Area_Right.area_entered.connect(_on_area_right_entered)
+	%Area_Right.area_exited.connect(_on_area_right_exited)
+	
+	%Area_Bottom.area_entered.connect(_on_area_bottom_entered)
+	%Area_Bottom.area_exited.connect(_on_area_bottom_exited)
 
 func _process(_delta: float) -> void:
 	if is_on_floor():
@@ -56,51 +59,55 @@ func detected_walled_state() -> walled_state:
 	else:
 		return walled_state.NEITHER
 		
-func _on_area_entered(area) -> void:
-	if piece_sees_on_right(area):
+func _on_area_right_entered(area) -> void:
+	if not itself(area):
 		if fallen:
-			match area.piece_type:
+			match area.get_parent().piece_type:
 				Piece.piece_types.PLAYER:
-					area.blocked_left.emit(false)
+					area.get_parent().blocked_left.emit(false)
 					print("player blocked on left")
 				Piece.piece_types.PLACED:
-					check_for_match()
+					check_for_match(area.get_parent())
 				_:
 					pass
 		else:
-			blocked_right.emit(false)
-			
-	if piece_sees_on_bottom(area):
+			if area.name == "%Area_Right":
+				blocked_right.emit(false)
+				print("player blocked on right")
+
+func _on_area_right_exited(area) -> void:
+	if not itself(area):
 		if fallen:
-			check_for_match()
+			match area.get_parent().piece_type:
+				Piece.piece_types.PLAYER:	
+					area.get_parent().unblocked_left.emit(false)
+					print(name,": ",name," unblocked on left at ")
+				Piece.piece_types.PLACED:
+					check_for_match(area.get_parent())
+				_:
+					pass
+		else:
+			unblocked_right.emit(false)
+
+func _on_area_bottom_entered(area) -> void:
+	if not itself(area):
+		if fallen:
+			check_for_match(area.get_parent())
 		else:
 			blocked_bottom.emit()
-			
-func _on_area_exited(area) -> void:
-	if fallen:
-		match area.piece_type:
-			Piece.piece_types.PLAYER:	
-				if not piece_sees_on_right(area):
-					area.unblocked_left.emit(false)
-					print(name,": ",name," unblocked on left at ")
-			Piece.piece_types.PLACED:
-				check_for_match()
-			_:
-				pass
-	else:
-		unblocked_right.emit(false)
-	if not piece_sees_on_bottom(area):
-		unblocked_bottom.emit()
 		
-func piece_sees_on_right(area) -> bool:
-	return is_equal_approx(area.position.x,position.x + 1.)
-	
-func piece_sees_on_bottom(area) -> bool:
-	return is_equal_approx(area.position.y,position.y - 1.)
+func _on_area_bottom_exited(area) -> void:
+	if not itself(area):
+		unblocked_bottom.emit()
+
+func itself(area_to_check_against) -> bool:
+	if area_to_check_against.get_parent() == self:
+		return true
+	return false
 
 #func piece_seen_by_left
 
 #func piece_seen_by_top
 
-func check_for_match() -> void:
+func check_for_match(area) -> void:
 	pass

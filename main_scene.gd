@@ -2,7 +2,7 @@ extends Node3D
 
 @onready var grid: Node3D = %Grid
 
-var piece: Area3D = preload("res://Objects/area_piece.tscn").instantiate()
+var piece: Node3D = preload("res://Objects/area_piece.tscn").instantiate()
 
 var component_movement: Timer = preload("res://Components/component_movement.tscn").instantiate()
 

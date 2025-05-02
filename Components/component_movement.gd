@@ -14,7 +14,9 @@ const MOVE_SPEED_HORIZ: float = 1.
 const BUTTON_HOLD_DELAY: float = .1
 var moving_left: bool = false
 var moving_right: bool = false
+var moving_down: bool = false
 
+const MOVE_SPEED_ROTATE: float = .3
 var rotate_position: rotate_positions
 enum rotate_positions {TOP,RIGHT,BOTTOM,LEFT}
 
@@ -42,49 +44,48 @@ func _ready() -> void:
 
 func _input(event) -> void:
 	if(event is InputEventKey and event.is_pressed()): #Ensure a key is pressed
-		rotational_movement(event)
-		horizontal_movement(event)
+		rotational_movement()
+		directional_movement()
 	
-func rotational_movement(event) -> void:
+func rotational_movement() -> void:
 	get_current_bottom_piece_pos()
 	if Input.is_action_just_pressed("Button 1"):
 		match rotate_position:
 			rotate_positions.TOP:
-				top_piece.position = top_offset_left
-				rotate_position = rotate_positions.LEFT
+				rotate_piece(top_offset_left,rotate_positions.LEFT)
 			rotate_positions.LEFT:
-				top_piece.position = top_offset_bottom
-				rotate_position = rotate_positions.BOTTOM
+				rotate_piece(top_offset_bottom,rotate_positions.BOTTOM)
 			rotate_positions.BOTTOM:
-				top_piece.position = top_offset_right
-				rotate_position = rotate_positions.RIGHT
+				rotate_piece(top_offset_right,rotate_positions.RIGHT)
 			rotate_positions.RIGHT:
-				top_piece.position = top_offset_top
-				rotate_position = rotate_positions.TOP
+				rotate_piece(top_offset_top,rotate_positions.TOP)
 				
 	if Input.is_action_just_pressed("Button 2"):
 		match rotate_position:
 			rotate_positions.TOP:
-				top_piece.position = top_offset_right
-				rotate_position = rotate_positions.RIGHT
+				rotate_piece(top_offset_right,rotate_positions.RIGHT)
 			rotate_positions.RIGHT:
-				top_piece.position = top_offset_bottom
-				rotate_position = rotate_positions.BOTTOM
+				rotate_piece(top_offset_bottom,rotate_positions.BOTTOM)
 			rotate_positions.BOTTOM:
-				top_piece.position = top_offset_left
-				rotate_position = rotate_positions.LEFT
+				rotate_piece(top_offset_left,rotate_positions.LEFT)
 			rotate_positions.LEFT:
-				top_piece.position = top_offset_top
-				rotate_position = rotate_positions.TOP
-		
+				rotate_piece(top_offset_top,rotate_positions.TOP)
 		
 func get_current_bottom_piece_pos() -> void:
 	top_offset_top = Vector3(position.x,1.,position.z)
 	top_offset_left = Vector3(-1.,position.y,position.z)
 	top_offset_bottom = Vector3(position.x,-1.,position.z)
-	top_offset_right = Vector3(1.,position.y,position.z)		
+	top_offset_right = Vector3(1.,position.y,position.z)
+	
+func rotate_piece(direction: Vector3,new_position: rotate_positions):
+	var tween: Tween = %RotationTweens.create_tween()	
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property(top_piece, "position", direction, MOVE_SPEED_ROTATE)
+	rotate_position = new_position
 
-func horizontal_movement(event) -> void:
+func directional_movement() -> void:
+	print("moving a direction")
 	if(Input.is_action_pressed("Left") and not moving_left):
 		moving_left=true
 		while(true):
@@ -100,6 +101,20 @@ func horizontal_movement(event) -> void:
 			object.position.x += MOVE_SPEED_HORIZ
 			await get_tree().create_timer(BUTTON_HOLD_DELAY).timeout
 		moving_right=false
+		
+	if(Input.is_action_pressed("Down") and not moving_down):
+		print("moving down")
+		moving_down = true
+		while(true):
+			if(not Input.is_action_pressed("Down")): break
+			
+			var downward_fall_speed: float = object.position.y - FALL_SPEED * 10
+			var tween: Tween = %DownwardTweens.create_tween()	
+			tween.set_ease(Tween.EASE_OUT)
+			tween.tween_property(object, "position:y", downward_fall_speed, .1)
+			
+			await get_tree().create_timer(BUTTON_HOLD_DELAY).timeout
+		moving_down = false
 	
 func _on_timeout():
 	if falling:

@@ -1,18 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvx0vpgdq47ba"]
+[gd_scene load_steps=4 format=3 uid="uid://dvx0vpgdq47ba"]
 
 [ext_resource type="Script" uid="uid://07xoso5ixu4o" path="res://Components/component_movement.gd" id="1_q1yae"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ja4lf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q0lp6"]
+size = Vector3(1, 1.4, 1)
 
 [node name="Component_Movement" type="Node3D"]
 script = ExtResource("1_q1yae")
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area_Main" type="Area3D" parent="."]
+unique_name_in_owner = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area_Main"]
 shape = SubResource("BoxShape3D_ja4lf")
+
+[node name="Area_Bottom" type="Area3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area_Bottom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+shape = SubResource("BoxShape3D_q0lp6")
 
 [node name="RotationTweens" type="Node3D" parent="."]
 unique_name_in_owner = true

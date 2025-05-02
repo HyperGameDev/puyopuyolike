@@ -1,35 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5pstaskn4ac"]
+[gd_scene load_steps=3 format=3 uid="uid://b5pstaskn4ac"]
 
 [ext_resource type="Script" uid="uid://cvpip3rm1cr24" path="res://Objects/area_piece.gd" id="1_cwjv0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2c62f"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_gyfs4"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_8h3d3"]
 
 [node name="Node_Piece" type="Node3D"]
 script = ExtResource("1_cwjv0")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_2c62f")
-
-[node name="Area_Right" type="Area3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
-collision_layer = 2
-collision_mask = 2
-
-[node name="Collision" type="CollisionShape3D" parent="Area_Right"]
-shape = SubResource("BoxShape3D_gyfs4")
-debug_color = Color(0, 0.6, 0.7, 0.42)
-
-[node name="Area_Bottom" type="Area3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-collision_layer = 2
-collision_mask = 2
-
-[node name="Collision" type="CollisionShape3D" parent="Area_Bottom"]
-shape = SubResource("BoxShape3D_8h3d3")
-debug_color = Color(0, 0.6, 0.7, 0.42)

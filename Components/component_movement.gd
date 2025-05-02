@@ -13,6 +13,7 @@ func _ready() -> void:
 	timeout.connect(_on_timeout)
 	start(.5)
 	
+	
 func _input(_event: InputEvent) -> void:
 	if can_move_horizonally:
 		object.position.x -= Input.get_axis("Right","Left")

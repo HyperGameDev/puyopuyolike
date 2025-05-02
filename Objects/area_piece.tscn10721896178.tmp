@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5pstaskn4ac"]
+
+[ext_resource type="Script" uid="uid://cvpip3rm1cr24" path="res://Objects/area_piece.gd" id="1_cwjv0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2c62f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gyfs4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8h3d3"]
+
+[node name="Area_Piece" type="Area3D"]
+script = ExtResource("1_cwjv0")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_2c62f")
+
+[node name="Collision_Right" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+shape = SubResource("BoxShape3D_gyfs4")
+
+[node name="Collision_Bottom" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58932e-08, -1, 0)
+shape = SubResource("BoxShape3D_8h3d3")

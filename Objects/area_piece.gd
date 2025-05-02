@@ -1,4 +1,4 @@
-class_name Piece extends Area3D
+class_name Piece extends Node3D
 
 signal grounded
 
@@ -82,7 +82,7 @@ func _on_area_exited(area) -> void:
 			Piece.piece_types.PLAYER:	
 				if not piece_sees_on_right(area):
 					area.unblocked_left.emit(false)
-					print(name,": ",name," unblocked on left")
+					print(name,": ",name," unblocked on left at ")
 			Piece.piece_types.PLACED:
 				check_for_match()
 			_:

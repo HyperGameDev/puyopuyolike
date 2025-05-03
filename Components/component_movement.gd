@@ -4,6 +4,7 @@ class_name Component_Movement extends Node3D
 @onready var timer_idle_move: Timer = $Timer_Idle_Move
 @onready var timer_move_left_delay: Timer = $Timer_Move_Left_Delay
 @onready var timer_move_right_delay: Timer = $Timer_Move_Right_Delay
+@onready var timer_fallen_delay: Timer = $Timer_Fallen_Delay
 
 @onready var piece: PackedScene = Main_Scene.ref.piece
 
@@ -14,8 +15,10 @@ var top_component_movement: Node3D
 var top_piece: Node3D
 var bottom_piece: Node3D
 
+const FALLEN_DELAY: float = .8
 const FALL_SPEED: float = .4
 var falling: bool = true
+var idle_movement: bool = true
 
 var walled_state: walled_states
 enum walled_states {NEITHER,LEFT,RIGHT}
@@ -50,14 +53,15 @@ func _ready() -> void:
 	%Area_Main.area_exited.connect(_on_area_main_exited)
 	%Area_Main_Cushion.area_entered.connect(_on_area_main_cushion_entered)
 	
+	timer_fallen_delay.timeout.connect(_on_fallen_delay_timeout)
+	
 func configure_top_piece() -> void:
-	bottom_piece = object.get_parent().object
+	bottom_piece = get_parent()
 	
-	bottom_component_movement = object.get_parent()
-	
+	bottom_component_movement = get_tree().get_current_scene().get_node("Grid/@Node3D@2/Component_Movement")
 func configure_bottom_piece() -> void:
 	%Area_Bottom.queue_free()
-	timer_move_left_delay.timeout.connect(_on_move_delay_left_timeout)
+	timer_move_left_delay.timeout.connect(_on_move_delay_left_timeout) 
 	timer_move_right_delay.timeout.connect(_on_move_delay_right_timeout)
 	timer_idle_move.timeout.connect(_on_idle_move_timeout)
 	timer_idle_move.start(.5)
@@ -66,7 +70,7 @@ func configure_bottom_piece() -> void:
 	top_piece = piece_to_add
 	top_piece.is_bottom_piece = false
 	
-	add_child(top_piece)
+	object.add_child(top_piece)
 	top_piece.position.y += 1.
 	top_piece.get_child(0).set_material_override(Globals.debug_material_top_piece)
 
@@ -119,9 +123,10 @@ func check_top_rotation():
 					pass
 	
 func _on_idle_move_timeout():
-	if falling:
+	if idle_movement:
 		object.position.y -= FALL_SPEED
 	else:
+		print("idle movement stopped")
 		timer_idle_move.stop()
 		
 func rotational_movement() -> void:
@@ -202,27 +207,36 @@ func directional_movement() -> void:
 			moving_down = false
 			
 func _on_move_delay_left_timeout():
-	if moving_left and Input.is_action_pressed("Left") and walled_state != walled_states.LEFT and downward_movement_allowed:
+	if moving_left and Input.is_action_pressed("Left") and walled_state != walled_states.LEFT:
 		object.position.x -= MOVE_SPEED_HORIZ
 		timer_move_left_delay.start(BUTTON_HOLD_DELAY)
 	else:
 		moving_left = false
 		
 func _on_move_delay_right_timeout():
-	if moving_right and Input.is_action_pressed("Right") and walled_state != walled_states.RIGHT and downward_movement_allowed:
+	if moving_right and Input.is_action_pressed("Right") and walled_state != walled_states.RIGHT:
 		object.position.x += MOVE_SPEED_HORIZ
 		timer_move_right_delay.start(BUTTON_HOLD_DELAY)
 	else:
 		moving_right = false
-	
+		
+func _on_fallen_delay_timeout() -> void:
+	Main_Scene.ref.spawn_piece(Piece.piece_types.PLAYER)
+	queue_free()
+	if object.is_bottom_piece:
+		falling = false
+	else:
+		bottom_component_movement.falling = false
 	
 func _on_area_main_entered(area) -> void:
 	match area.name:
 		"Ground":
 			if object.is_bottom_piece:
-				falling = false
-			else:
-				bottom_component_movement.falling = false
+				idle_movement = false
+				timer_fallen_delay.start(FALLEN_DELAY)
+			else: # is the top piece
+				timer_fallen_delay.start(FALLEN_DELAY)
+				bottom_component_movement.idle_movement = false
 				
 		"Wall_L":
 			if object.is_bottom_piece:
@@ -239,6 +253,11 @@ func _on_area_main_entered(area) -> void:
 
 func _on_area_main_exited(area) -> void:
 	match area.name:
+		"Ground":
+			if object.is_bottom_piece:
+				idle_movement = true
+			else: # is the top piece
+				bottom_component_movement.idle_movement = true
 		"Wall_L":
 			if object.is_bottom_piece:
 				walled_state = walled_states.NEITHER

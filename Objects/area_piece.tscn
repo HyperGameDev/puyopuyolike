@@ -1,8 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5pstaskn4ac"]
+[gd_scene load_steps=6 format=3 uid="uid://b5pstaskn4ac"]
 
 [ext_resource type="Script" uid="uid://cvpip3rm1cr24" path="res://Objects/area_piece.gd" id="1_cwjv0"]
 
+[sub_resource type="Gradient" id="Gradient_8h3d3"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.752688)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pmc38"]
+gradient = SubResource("Gradient_8h3d3")
+fill = 2
+fill_from = Vector2(0.15, 0.25)
+fill_to = Vector2(0.444, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8h3d3"]
+albedo_color = Color(1, 0, 1, 1)
+albedo_texture = SubResource("GradientTexture2D_pmc38")
+
 [sub_resource type="BoxMesh" id="BoxMesh_2c62f"]
+material = SubResource("StandardMaterial3D_8h3d3")
 
 [node name="Node_Piece" type="Node3D"]
 script = ExtResource("1_cwjv0")

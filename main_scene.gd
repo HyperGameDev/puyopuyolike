@@ -6,7 +6,9 @@ static var ref
 
 var piece: PackedScene = preload("res://Objects/area_piece.tscn")
 
-var component_movement: Node3D = preload("res://Components/component_movement.tscn").instantiate()
+var component_movement: PackedScene = preload("res://Components/component_movement.tscn")
+
+@onready var ground_area: Area3D = %Ground
 
 
 var spawn_pos: Vector3 = Vector3(3,13,0)
@@ -25,8 +27,9 @@ func spawn_piece(type_to_spawn) -> void:
 	
 	match type_to_spawn:
 		Piece.piece_types.PLAYER:
+			var component_to_add: Node3D = component_movement.instantiate()
 			piece_to_add.position = spawn_pos
-			piece_to_add.add_child(component_movement)
+			piece_to_add.add_child(component_to_add)
 			
 	
 	

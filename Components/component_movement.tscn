@@ -15,8 +15,6 @@ script = ExtResource("1_q1yae")
 
 [node name="Timer_Idle_Move" type="Timer" parent="."]
 
-[node name="Timer_Fallen_Delay" type="Timer" parent="."]
-
 [node name="Timer_Move_Left_Delay" type="Timer" parent="."]
 
 [node name="Timer_Move_Right_Delay" type="Timer" parent="."]

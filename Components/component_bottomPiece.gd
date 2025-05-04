@@ -4,7 +4,7 @@ class_name Component_bottomPiece extends Component
 @onready var timer_move_left_delay: Timer = $Timer_Move_Left_Delay
 @onready var timer_move_right_delay: Timer = $Timer_Move_Right_Delay
 
-var component_top_piece: Node3D
+var component_top_piece: Component_topPiece
 
 var top_piece: Node3D
 
@@ -29,6 +29,7 @@ func _ready() -> void:
 	timer_idle_move.start(.5)
 	
 	top_piece = Main_Scene.ref.spawn_piece(Piece.piece_types.TOP,piece)
+	component_top_piece = Globals.current_top_component
 
 func _input(event: InputEvent) -> void:
 	if(event is InputEventKey and event.is_pressed()): #Ensure a key is pressed

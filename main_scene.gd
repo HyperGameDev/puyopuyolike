@@ -47,7 +47,7 @@ func setup_bottom_piece(piece_to_add: Node3D) -> void:
 	Globals.current_bottom_component = component_to_add
 	
 
-func setup_top_piece(piece_to_add: Node3D, parent: Node3D) -> void:
+func setup_top_piece(piece_to_add: Node3D, _parent: Node3D) -> void:
 	piece_to_add.position.y += 1.
 	piece_to_add.assign_color(piece_to_add,Globals.DEBUG_MATERIAL_TOP_PIECE)
 	
@@ -55,11 +55,6 @@ func setup_top_piece(piece_to_add: Node3D, parent: Node3D) -> void:
 	component_to_add = add_component(piece_to_add,Globals.COMPONENTS["topPiece"].instantiate())
 	
 	Globals.current_top_component = component_to_add
-	
-	var component_bottom_piece: Node3D = parent.get_component("Component_bottomPiece")
-	component_bottom_piece.component_top_piece = component_to_add
-	
-	component_to_add.component_bottom_piece = component_bottom_piece
 
 func add_component(object: Node3D,component_to_add: Node3D) -> Node3D:
 	object.add_child(component_to_add)

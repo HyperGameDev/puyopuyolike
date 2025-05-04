@@ -15,5 +15,5 @@ const GROUND_POS: float = 1.
 const WALL_L_POS: float = 1.
 const WALL_R_POS: float = 6.
 
-var current_bottom_component: Node3D
-var current_top_component: Node3D
+var current_bottom_component: Component_bottomPiece
+var current_top_component: Component_topPiece

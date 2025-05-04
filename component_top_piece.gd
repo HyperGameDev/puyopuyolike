@@ -21,6 +21,12 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	check_top_rotation()
+	if found_bottom_component_ref():
+		return
+	
+func found_bottom_component_ref() -> bool:
+	component_bottom_piece = Globals.current_bottom_component
+	return Globals.current_bottom_component != null
 		
 func check_top_rotation() -> void:
 	if rotating:

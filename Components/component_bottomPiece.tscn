@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvx0vpgdq47ba"]
+
+[ext_resource type="Script" uid="uid://07xoso5ixu4o" path="res://Components/component_bottomPiece.gd" id="1_suo6t"]
+
+[node name="Component_bottomPiece" type="Node3D"]
+script = ExtResource("1_suo6t")
+
+[node name="Timer_Idle_Move" type="Timer" parent="."]
+
+[node name="Timer_Move_Left_Delay" type="Timer" parent="."]
+
+[node name="Timer_Move_Right_Delay" type="Timer" parent="."]
+
+[node name="DownwardTweens" type="Node3D" parent="."]
+unique_name_in_owner = true

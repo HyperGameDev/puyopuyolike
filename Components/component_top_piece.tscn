@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgngfx0epvajl"]
+
+[ext_resource type="Script" uid="uid://7rj1dsqf1coc" path="res://component_top_piece.gd" id="1_dlbqa"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dlbqa"]
+size = Vector3(0.8, 0.8, 0.1)
+
+[node name="Component_topPiece" type="Node3D"]
+script = ExtResource("1_dlbqa")
+
+[node name="Area_Overlap" type="Area3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area_Overlap"]
+shape = SubResource("BoxShape3D_dlbqa")
+
+[node name="RotationTweens" type="Node3D" parent="."]
+unique_name_in_owner = true

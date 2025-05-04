@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cv6b23ll8hu0t"]
+[gd_scene load_steps=11 format=3 uid="uid://cv6b23ll8hu0t"]
 
 [ext_resource type="Script" uid="uid://b4amaa7rvuwrs" path="res://main_scene.gd" id="1_2c62f"]
-[ext_resource type="PackedScene" uid="uid://b5pstaskn4ac" path="res://Objects/area_piece.tscn" id="2_2c62f"]
+[ext_resource type="PackedScene" uid="uid://b5pstaskn4ac" path="res://Objects/piece.tscn" id="2_2c62f"]
+[ext_resource type="Script" uid="uid://g7bmqq04j4hy" path="res://canvas_layer_debug.gd" id="3_gyfs4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0f027"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -158,3 +159,12 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Box/Mesh_Wall_R/Wall_R"]
 transform = Transform3D(1.31134e-07, -1, 0, 1, 1.31134e-07, 0, 0, 0, 1, 3, -6.5, 0)
 shape = SubResource("WorldBoundaryShape3D_2c62f")
+
+[node name="CanvasLayer_Debug" type="CanvasLayer" parent="."]
+script = ExtResource("3_gyfs4")
+
+[node name="Button_Spawn" type="Button" parent="CanvasLayer_Debug"]
+unique_name_in_owner = true
+offset_right = 132.0
+offset_bottom = 52.0
+text = "New Piece"

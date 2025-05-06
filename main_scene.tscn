@@ -1,10 +1,20 @@
-[gd_scene load_steps=13 format=3 uid="uid://cv6b23ll8hu0t"]
+[gd_scene load_steps=36 format=3 uid="uid://cv6b23ll8hu0t"]
 
 [ext_resource type="Script" uid="uid://b4amaa7rvuwrs" path="res://main_scene.gd" id="1_2c62f"]
 [ext_resource type="PackedScene" uid="uid://b5pstaskn4ac" path="res://Objects/Pieces/piece.tscn" id="2_2c62f"]
+[ext_resource type="PackedScene" uid="uid://brrkfy76vm05n" path="res://Objects/Boundary/background.tscn" id="3_7ycvg"]
 [ext_resource type="PackedScene" uid="uid://dk5hiodkmbe7k" path="res://Objects/Boundary/wall_pieces.tscn" id="3_8mm7a"]
 [ext_resource type="Script" uid="uid://g7bmqq04j4hy" path="res://canvas_layer_debug.gd" id="3_gyfs4"]
+[ext_resource type="PackedScene" uid="uid://crbnmipvmmh0a" path="res://Objects/Boundary/ground_pieces.tscn" id="3_hq1ik"]
+[ext_resource type="Script" uid="uid://bgra4thrxotjq" path="res://camera_3d.gd" id="3_qwutr"]
 [ext_resource type="PackedScene" uid="uid://bwp50jnqt1dwa" path="res://Characters/Squirrel/Mesh/squirrel.tscn" id="4_d5x1h"]
+[ext_resource type="Material" uid="uid://cd3bh5okfad4l" path="res://Objects/Textures/color_grass.tres" id="4_nfk4m"]
+[ext_resource type="PackedScene" uid="uid://dwqyipshogceg" path="res://Objects/Boundary/ground_pieces_mid.tscn" id="6_66tet"]
+[ext_resource type="Material" uid="uid://c5b7uiiavapc2" path="res://Objects/Textures/color_dirt.tres" id="6_mo76n"]
+[ext_resource type="Material" uid="uid://bwud1nbl0q3sj" path="res://Levels/Level_1/Textures/sky.tres" id="7_mo76n"]
+[ext_resource type="Script" uid="uid://cci8vg4emdaj0" path="res://Levels/Level_1/level_1.gd" id="8_2jcla"]
+[ext_resource type="PackedScene" uid="uid://b5l7go08my3i" path="res://Levels/Level_2/level_2-2.tscn" id="11_mo76n"]
+[ext_resource type="PackedScene" uid="uid://c205h41nxdh8v" path="res://Levels/Level_3/level_2_3.tscn" id="12_42l1d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0f027"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -16,6 +26,145 @@ sky_material = SubResource("ProceduralSkyMaterial_0f027")
 [sub_resource type="Environment" id="Environment_gyfs4"]
 sky = SubResource("Sky_2c62f")
 tonemap_mode = 2
+
+[sub_resource type="Environment" id="Environment_wr18j"]
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.3132, 0.40014, 0.54, 1)
+fog_light_energy = 0.9
+fog_density = 0.7329
+fog_height = 14.01
+fog_height_density = -0.0237
+fog_depth_curve = 0.420448
+fog_depth_begin = 5.5
+fog_depth_end = 725.7
+
+[sub_resource type="Animation" id="Animation_mo76n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(6.8, 6.5, 7.3)]
+}
+
+[sub_resource type="Animation" id="Animation_671wp"]
+resource_name = "level_1-2"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.8, 1.76667),
+"transitions": PackedFloat32Array(0.659754, 1),
+"update": 0,
+"values": [Vector3(6.8, 6.5, 7.3), Vector3(6.8, -12.5, 7.3)]
+}
+
+[sub_resource type="Animation" id="Animation_qwutr"]
+resource_name = "level_next"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.659, 1),
+"update": 0,
+"values": [Vector3(6.8, -12.5, 7.3), Vector3(6.8, -31.5, 7.3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_42l1d"]
+_data = {
+&"RESET": SubResource("Animation_mo76n"),
+&"level_1-2": SubResource("Animation_671wp"),
+&"level_next": SubResource("Animation_qwutr")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tegn8"]
+render_priority = 1
+transparency = 1
+albedo_color = Color(0.19, 0.19, 0.19, 0.713726)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h43f3"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_3r3rv"]
+_surfaces = [{
+"aabb": AABB(-3.58381e-06, -47.469, -47.469, 1e-05, 94.938, 94.938),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 255, 255, 255, 255, 0, 0, 125, 183, 0, 0, 0, 0, 0, 0, 125, 183, 0, 0, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_m6a8b"]
+resource_name = "background_Plane"
+_surfaces = [{
+"aabb": AABB(-3.58381e-06, -47.469, -47.469, 1e-05, 94.938, 94.938),
+"attribute_data": PackedByteArray(232, 5, 255, 255, 254, 255, 232, 5, 255, 255, 254, 255, 232, 5, 232, 5),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_h43f3"),
+"primitive": 3,
+"uv_scale": Vector4(43.3281, 43.3281, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 255, 255, 255, 255, 84, 213, 125, 183, 0, 0, 0, 0, 84, 213, 125, 183, 0, 0, 255, 255, 84, 213, 0, 0, 255, 255, 0, 0, 84, 213, 170, 170, 84, 85, 170, 170, 84, 85, 170, 170, 84, 85, 170, 170, 84, 85)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_3r3rv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qwutr"]
+render_priority = 1
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.784314)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mo76n"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_42l1d"]
+_surfaces = [{
+"aabb": AABB(-3.58381e-06, -47.469, -47.469, 1e-05, 94.938, 94.938),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 255, 255, 255, 255, 0, 0, 125, 183, 0, 0, 0, 0, 0, 0, 125, 183, 0, 0, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2jcla"]
+resource_name = "background_Plane"
+_surfaces = [{
+"aabb": AABB(-3.58381e-06, -47.469, -47.469, 1e-05, 94.938, 94.938),
+"attribute_data": PackedByteArray(232, 5, 255, 255, 254, 255, 232, 5, 255, 255, 254, 255, 232, 5, 232, 5),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_mo76n"),
+"primitive": 3,
+"uv_scale": Vector4(43.3281, 43.3281, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 255, 255, 255, 255, 84, 213, 125, 183, 0, 0, 0, 0, 84, 213, 125, 183, 0, 0, 255, 255, 84, 213, 0, 0, 255, 255, 0, 0, 84, 213, 170, 170, 84, 85, 170, 170, 84, 85, 170, 170, 84, 85, 170, 170, 84, 85)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_42l1d")
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_2c62f"]
 
@@ -43,11 +192,13 @@ piece_type = 2
 
 [node name="Node_Piece" parent="Grid" instance=ExtResource("2_2c62f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0)
+visible = false
 fallen = true
 piece_type = 2
 
 [node name="Node_Piece3" parent="Grid" instance=ExtResource("2_2c62f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, 0)
+visible = false
 fallen = true
 piece_type = 2
 
@@ -103,19 +254,119 @@ piece_type = 2
 environment = SubResource("Environment_gyfs4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(-0.376224, 0.919818, 0.11131, -1.05027e-08, -0.120137, 0.992757, 0.926529, 0.373499, 0.0451984, 0, 0, 0)
-light_specular = 3.12
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91068e-15, 0, 0, 0)
+light_specular = 0.0
 shadow_enabled = true
+shadow_bias = 10.0
+shadow_normal_bias = 3.091
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.970296, -0.0585262, 0.234736, 0, 0.970296, 0.241922, -0.241922, -0.234736, 0.941474, 6.8, 6.5, 6)
-h_offset = 2.44
+transform = Transform3D(0.970296, -0.0585262, 0.234736, 0, 0.970296, 0.241922, -0.241922, -0.234736, 0.941474, 6.8, 6.5, 7.3)
+environment = SubResource("Environment_wr18j")
+h_offset = 2.8
 v_offset = 3.7
 projection = 1
 size = 20.0
 near = 0.005
+script = ExtResource("3_qwutr")
+
+[node name="Animation_Camera" type="AnimationPlayer" parent="Camera3D"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_42l1d")
+}
+
+[node name="Score" type="Node3D" parent="Camera3D"]
+transform = Transform3D(0.970296, 0, -0.241922, -0.0585262, 0.970296, -0.234736, 0.234736, 0.241922, 0.941474, -4.83198, -4.19537, -10.0415)
+
+[node name="Label_Time_Text" type="Label3D" parent="Camera3D/Score"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.72, 11.955, 1.515)
+offset = Vector2(-280, 0)
+render_priority = 127
+text = "TIME"
+font_size = 80
+outline_size = 52
+horizontal_alignment = 0
+
+[node name="Label_Time_Value" type="Label3D" parent="Camera3D/Score"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.72, 11.295, 1.515)
+render_priority = 127
+text = "MM:SS:MS"
+font_size = 80
+outline_size = 52
+
+[node name="Label_Score_Text" type="Label3D" parent="Camera3D/Score"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.72, 9.955, 1.515)
+offset = Vector2(-280, 0)
+render_priority = 127
+text = "SCORE"
+font_size = 80
+outline_size = 52
+horizontal_alignment = 0
+
+[node name="Label_Score_Value" type="Label3D" parent="Camera3D/Score"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.72, 9.295, 1.515)
+render_priority = 127
+text = "00000000"
+font_size = 80
+outline_size = 52
 
 [node name="Level_All" type="Node3D" parent="."]
+
+[node name="bg_dirt_mid" parent="Level_All" instance=ExtResource("3_7ycvg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -33.385, 0)
+
+[node name="bg_dirt_mid_grass" type="Node3D" parent="Level_All"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -33.26, -0.1)
+
+[node name="Plane" type="MeshInstance3D" parent="Level_All/bg_dirt_mid_grass"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 0, 0)
+material_overlay = SubResource("StandardMaterial3D_tegn8")
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_m6a8b")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("4_nfk4m")
+
+[node name="bg_grass_distance" type="Node3D" parent="Level_All"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 14.24, -47.3)
+
+[node name="Plane" type="MeshInstance3D" parent="Level_All/bg_grass_distance"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_m6a8b")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("4_nfk4m")
+
+[node name="bg_dirt_L" type="Node3D" parent="Level_All"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.8, -33.26, 0.1)
+
+[node name="Plane" type="MeshInstance3D" parent="Level_All/bg_dirt_L"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 0, 0)
+material_overlay = SubResource("StandardMaterial3D_qwutr")
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_m6a8b")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("6_mo76n")
+
+[node name="bg_dirt_R" type="Node3D" parent="Level_All"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.2, -33.26, 0.1)
+
+[node name="Plane" type="MeshInstance3D" parent="Level_All/bg_dirt_R"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 0, 0)
+material_overlay = SubResource("StandardMaterial3D_qwutr")
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_m6a8b")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("6_mo76n")
+
+[node name="bg_sky" type="Node3D" parent="Level_All"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26, -8.94)
+
+[node name="Plane" type="MeshInstance3D" parent="Level_All/bg_sky"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_2jcla")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("7_mo76n")
 
 [node name="Wall_L" type="Area3D" parent="Level_All"]
 unique_name_in_owner = true
@@ -145,6 +396,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.4, 0)
 shape = SubResource("WorldBoundaryShape3D_2c62f")
 
 [node name="Debug_Boundary" type="Node3D" parent="Level_All"]
+visible = false
 
 [node name="Mesh_Wall_L" type="MeshInstance3D" parent="Level_All/Debug_Boundary"]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 3.3, 7, 1)
@@ -166,21 +418,25 @@ skeleton = NodePath("")
 
 [node name="Mesh_Ceiling_L" type="MeshInstance3D" parent="Level_All/Debug_Boundary"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 14, 1)
+visible = false
 mesh = SubResource("BoxMesh_d5x1h")
 skeleton = NodePath("")
 
 [node name="Mesh_Ceiling_R" type="MeshInstance3D" parent="Level_All/Debug_Boundary"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8, 14, 1)
+visible = false
 mesh = SubResource("BoxMesh_d5x1h")
 skeleton = NodePath("")
 
 [node name="Mesh_Ground_L" type="MeshInstance3D" parent="Level_All/Debug_Boundary"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0, 1)
+visible = false
 mesh = SubResource("BoxMesh_d5x1h")
 skeleton = NodePath("")
 
 [node name="Mesh_Ground_R" type="MeshInstance3D" parent="Level_All/Debug_Boundary"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8, 0, 1)
+visible = false
 mesh = SubResource("BoxMesh_d5x1h")
 skeleton = NodePath("")
 
@@ -191,9 +447,126 @@ mesh = SubResource("BoxMesh_8mm7a")
 skeleton = NodePath("")
 
 [node name="Level_1" type="Node3D" parent="."]
+script = ExtResource("8_2jcla")
 
 [node name="Box" type="Node3D" parent="Level_1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8, 0, 1)
+
+[node name="Ground_Pieces_L" parent="Level_1/Box" instance=ExtResource("3_hq1ik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 14, 0)
+
+[node name="Cube" parent="Level_1/Box/Ground_Pieces_L/piece" index="0"]
+visible = false
+surface_material_override/0 = ExtResource("4_nfk4m")
+
+[node name="Cube_Grass" parent="Level_1/Box/Ground_Pieces_L/piece" index="1"]
+visible = true
+cast_shadow = 0
+
+[node name="Cube" parent="Level_1/Box/Ground_Pieces_L/piece2" index="0"]
+visible = false
+surface_material_override/0 = ExtResource("4_nfk4m")
+
+[node name="Cube_Grass" parent="Level_1/Box/Ground_Pieces_L/piece2" index="1"]
+visible = true
+cast_shadow = 0
+
+[node name="Cube" parent="Level_1/Box/Ground_Pieces_L/piece3" index="0"]
+visible = false
+surface_material_override/0 = ExtResource("4_nfk4m")
+
+[node name="Cube_Grass" parent="Level_1/Box/Ground_Pieces_L/piece3" index="1"]
+visible = true
+cast_shadow = 0
+
+[node name="Cube" parent="Level_1/Box/Ground_Pieces_L/piece4" index="0"]
+visible = false
+surface_material_override/0 = ExtResource("4_nfk4m")
+
+[node name="Cube_Grass" parent="Level_1/Box/Ground_Pieces_L/piece4" index="1"]
+visible = true
+cast_shadow = 0
+
+[node name="Cube" parent="Level_1/Box/Ground_Pieces_L/piece5" index="0"]
+visible = false
+surface_material_override/0 = ExtResource("4_nfk4m")
+
+[node name="Cube_Grass" parent="Level_1/Box/Ground_Pieces_L/piece5" index="1"]
+visible = true
+cast_shadow = 0
+
+[node name="Cube" parent="Level_1/Box/Ground_Pieces_L/piece6" index="0"]
+visible = false
+surface_material_override/0 = ExtResource("4_nfk4m")
+
+[node name="Cube_Grass" parent="Level_1/Box/Ground_Pieces_L/piece6" index="1"]
+visible = true
+cast_shadow = 0
+
+[node name="Cube" parent="Level_1/Box/Ground_Pieces_L/piece7" index="0"]
+visible = false
+
+[node name="Cube_Grass" parent="Level_1/Box/Ground_Pieces_L/piece7" index="1"]
+visible = true
+cast_shadow = 0
+
+[node name="Ground_Pieces_R" parent="Level_1/Box" instance=ExtResource("3_hq1ik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 14, 0)
+
+[node name="Cube" parent="Level_1/Box/Ground_Pieces_R/piece" index="0"]
+visible = false
+surface_material_override/0 = ExtResource("4_nfk4m")
+
+[node name="Cube_Grass" parent="Level_1/Box/Ground_Pieces_R/piece" index="1"]
+visible = true
+cast_shadow = 0
+
+[node name="Cube" parent="Level_1/Box/Ground_Pieces_R/piece2" index="0"]
+visible = false
+surface_material_override/0 = ExtResource("4_nfk4m")
+
+[node name="Cube_Grass" parent="Level_1/Box/Ground_Pieces_R/piece2" index="1"]
+visible = true
+cast_shadow = 0
+
+[node name="Cube" parent="Level_1/Box/Ground_Pieces_R/piece3" index="0"]
+visible = false
+surface_material_override/0 = ExtResource("4_nfk4m")
+
+[node name="Cube_Grass" parent="Level_1/Box/Ground_Pieces_R/piece3" index="1"]
+visible = true
+cast_shadow = 0
+
+[node name="Cube" parent="Level_1/Box/Ground_Pieces_R/piece4" index="0"]
+visible = false
+surface_material_override/0 = ExtResource("4_nfk4m")
+
+[node name="Cube_Grass" parent="Level_1/Box/Ground_Pieces_R/piece4" index="1"]
+visible = true
+cast_shadow = 0
+
+[node name="Cube" parent="Level_1/Box/Ground_Pieces_R/piece5" index="0"]
+visible = false
+surface_material_override/0 = ExtResource("4_nfk4m")
+
+[node name="Cube_Grass" parent="Level_1/Box/Ground_Pieces_R/piece5" index="1"]
+visible = true
+cast_shadow = 0
+
+[node name="Cube" parent="Level_1/Box/Ground_Pieces_R/piece6" index="0"]
+visible = false
+surface_material_override/0 = ExtResource("4_nfk4m")
+
+[node name="Cube_Grass" parent="Level_1/Box/Ground_Pieces_R/piece6" index="1"]
+visible = true
+cast_shadow = 0
+
+[node name="Cube" parent="Level_1/Box/Ground_Pieces_R/piece7" index="0"]
+visible = false
+
+[node name="Cube_Grass" parent="Level_1/Box/Ground_Pieces_R/piece7" index="1"]
+visible = true
+cast_shadow = 0
 
 [node name="Wall_Pieces_L" parent="Level_1/Box" instance=ExtResource("3_8mm7a")]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -3.5, 7, 0)
@@ -201,67 +574,64 @@ transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -3.5, 
 [node name="Wall_Pieces_R" parent="Level_1/Box" instance=ExtResource("3_8mm7a")]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 3.5, 7, 0)
 
-[node name="Ground_Pieces_Mid" type="Node3D" parent="Level_1/Box"]
+[node name="Ground_Pieces_L_bottom" parent="Level_1/Box" instance=ExtResource("3_hq1ik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
 
-[node name="Level_2" type="Node3D" parent="."]
+[node name="Ground_Pieces_R_bottom" parent="Level_1/Box" instance=ExtResource("3_hq1ik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="Ground_Pieces_Mid" parent="Level_1/Box" instance=ExtResource("6_66tet")]
+visible = false
+
+[node name="Level_2-2" parent="." instance=ExtResource("11_mo76n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14, 0)
 
-[node name="Box" type="Node3D" parent="Level_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8, 0, 1)
-
-[node name="Wall_Pieces_L" parent="Level_2/Box" instance=ExtResource("3_8mm7a")]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -3.5, 7, 0)
-
-[node name="Wall_Pieces_R" parent="Level_2/Box" instance=ExtResource("3_8mm7a")]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 3.5, 7, 0)
+[node name="Level_2-3" parent="." instance=ExtResource("12_42l1d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -33, 0)
 
 [node name="CanvasLayer_Debug" type="CanvasLayer" parent="."]
 script = ExtResource("3_gyfs4")
 
-[node name="Button_Spawn" type="Button" parent="CanvasLayer_Debug"]
-unique_name_in_owner = true
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer_Debug"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -88.0
-offset_top = -54.0
-offset_right = -28.0
+offset_left = -51.0
+offset_top = -48.0
 grow_horizontal = 0
 grow_vertical = 0
+
+[node name="Button_Spawn" type="Button" parent="CanvasLayer_Debug/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 text = "New
 Piece"
 
+[node name="Button_Level" type="Button" parent="CanvasLayer_Debug/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Next
+Lvl"
+
 [node name="squirrel" parent="." instance=ExtResource("4_d5x1h")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11, 15, 1)
+visible = false
 
-[node name="Score" type="Node3D" parent="."]
-
-[node name="Label_Time_Text" type="Label3D" parent="Score"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.72, 11.955, 1.515)
-offset = Vector2(-280, 0)
-text = "TIME"
-font_size = 80
-outline_size = 52
-horizontal_alignment = 0
-
-[node name="Label_Time_Value" type="Label3D" parent="Score"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.72, 11.295, 1.515)
-text = "MM:SS:MS"
-font_size = 80
-outline_size = 52
-
-[node name="Label_Score_Text" type="Label3D" parent="Score"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.72, 9.955, 1.515)
-offset = Vector2(-280, 0)
-text = "SCORE"
-font_size = 80
-outline_size = 52
-horizontal_alignment = 0
-
-[node name="Label_Score_Value" type="Label3D" parent="Score"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.72, 9.295, 1.515)
-text = "00000000"
-font_size = 80
-outline_size = 52
+[editable path="Level_1/Box/Ground_Pieces_L"]
+[editable path="Level_1/Box/Ground_Pieces_L/piece"]
+[editable path="Level_1/Box/Ground_Pieces_L/piece2"]
+[editable path="Level_1/Box/Ground_Pieces_L/piece3"]
+[editable path="Level_1/Box/Ground_Pieces_L/piece4"]
+[editable path="Level_1/Box/Ground_Pieces_L/piece5"]
+[editable path="Level_1/Box/Ground_Pieces_L/piece6"]
+[editable path="Level_1/Box/Ground_Pieces_L/piece7"]
+[editable path="Level_1/Box/Ground_Pieces_R"]
+[editable path="Level_1/Box/Ground_Pieces_R/piece"]
+[editable path="Level_1/Box/Ground_Pieces_R/piece2"]
+[editable path="Level_1/Box/Ground_Pieces_R/piece3"]
+[editable path="Level_1/Box/Ground_Pieces_R/piece4"]
+[editable path="Level_1/Box/Ground_Pieces_R/piece5"]
+[editable path="Level_1/Box/Ground_Pieces_R/piece6"]
+[editable path="Level_1/Box/Ground_Pieces_R/piece7"]

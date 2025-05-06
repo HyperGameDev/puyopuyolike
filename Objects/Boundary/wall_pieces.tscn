@@ -1,44 +1,110 @@
-[gd_scene load_steps=2 format=3 uid="uid://dk5hiodkmbe7k"]
+[gd_scene load_steps=3 format=3 uid="uid://dk5hiodkmbe7k"]
 
-[ext_resource type="PackedScene" uid="uid://b5pstaskn4ac" path="res://Objects/Pieces/piece.tscn" id="1_tx1y0"]
+[ext_resource type="PackedScene" uid="uid://bro1ybx07sfir" path="res://Objects/Meshes/piece_mesh.tscn" id="1_jqbdk"]
+[ext_resource type="Material" uid="uid://ba3vefww0115k" path="res://Objects/Textures/color_bedrock.tres" id="2_b5lqq"]
 
 [node name="Wall_Pieces" type="Node3D"]
 
-[node name="Node_Piece" parent="." instance=ExtResource("1_tx1y0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.53674e-07, 6, 0)
+[node name="piece" parent="." instance=ExtResource("1_jqbdk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
 
-[node name="Node_Piece2" parent="." instance=ExtResource("1_tx1y0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.15256e-07, 5, 0)
+[node name="Cube" parent="piece" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("2_b5lqq")
 
-[node name="Node_Piece3" parent="." instance=ExtResource("1_tx1y0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19209e-06, 4, 0)
+[node name="piece2" parent="." instance=ExtResource("1_jqbdk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
-[node name="Node_Piece4" parent="." instance=ExtResource("1_tx1y0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.43051e-06, 3, 0)
+[node name="Cube" parent="piece2" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("2_b5lqq")
 
-[node name="Node_Piece5" parent="." instance=ExtResource("1_tx1y0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19209e-06, 2, 0)
+[node name="piece3" parent="." instance=ExtResource("1_jqbdk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 
-[node name="Node_Piece6" parent="." instance=ExtResource("1_tx1y0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.43051e-06, 1, 0)
+[node name="Cube" parent="piece3" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("2_b5lqq")
 
-[node name="Node_Piece7" parent="." instance=ExtResource("1_tx1y0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19209e-06, -4.76837e-07, 0)
+[node name="piece4" parent="." instance=ExtResource("1_jqbdk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
-[node name="Node_Piece8" parent="." instance=ExtResource("1_tx1y0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19209e-06, -1, 0)
+[node name="Cube" parent="piece4" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("2_b5lqq")
 
-[node name="Node_Piece9" parent="." instance=ExtResource("1_tx1y0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.43051e-06, -2, 0)
+[node name="piece5" parent="." instance=ExtResource("1_jqbdk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="Node_Piece10" parent="." instance=ExtResource("1_tx1y0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19209e-06, -3, 0)
+[node name="Cube" parent="piece5" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("2_b5lqq")
 
-[node name="Node_Piece11" parent="." instance=ExtResource("1_tx1y0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19209e-06, -4, 0)
+[node name="piece6" parent="." instance=ExtResource("1_jqbdk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="Node_Piece12" parent="." instance=ExtResource("1_tx1y0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.43051e-06, -5, 0)
+[node name="Cube" parent="piece6" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("2_b5lqq")
 
-[node name="Node_Piece13" parent="." instance=ExtResource("1_tx1y0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66893e-06, -6, 0)
+[node name="piece7" parent="." instance=ExtResource("1_jqbdk")]
+
+[node name="Cube" parent="piece7" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("2_b5lqq")
+
+[node name="piece8" parent="." instance=ExtResource("1_jqbdk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Cube" parent="piece8" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("2_b5lqq")
+
+[node name="piece9" parent="." instance=ExtResource("1_jqbdk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+
+[node name="Cube" parent="piece9" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("2_b5lqq")
+
+[node name="piece10" parent="." instance=ExtResource("1_jqbdk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+
+[node name="Cube" parent="piece10" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("2_b5lqq")
+
+[node name="piece11" parent="." instance=ExtResource("1_jqbdk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+
+[node name="Cube" parent="piece11" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("2_b5lqq")
+
+[node name="piece12" parent="." instance=ExtResource("1_jqbdk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+
+[node name="Cube" parent="piece12" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("2_b5lqq")
+
+[node name="piece13" parent="." instance=ExtResource("1_jqbdk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0)
+
+[node name="Cube" parent="piece13" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("2_b5lqq")
+
+[editable path="piece"]
+[editable path="piece2"]
+[editable path="piece3"]
+[editable path="piece4"]
+[editable path="piece5"]
+[editable path="piece6"]
+[editable path="piece7"]
+[editable path="piece8"]
+[editable path="piece9"]
+[editable path="piece10"]
+[editable path="piece11"]
+[editable path="piece12"]
+[editable path="piece13"]

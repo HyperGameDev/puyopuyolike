@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://crbnmipvmmh0a"]
+
+[ext_resource type="PackedScene" uid="uid://bro1ybx07sfir" path="res://Objects/Meshes/piece_mesh.tscn" id="1_7itfu"]
+[ext_resource type="Material" uid="uid://ba3vefww0115k" path="res://Objects/Textures/color_bedrock.tres" id="2_xool8"]
+
+[node name="Ground_Pieces" type="Node3D"]
+
+[node name="piece" parent="." instance=ExtResource("1_7itfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+
+[node name="Cube" parent="piece" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("2_xool8")
+
+[node name="piece2" parent="." instance=ExtResource("1_7itfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
+
+[node name="Cube" parent="piece2" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("2_xool8")
+
+[node name="piece3" parent="." instance=ExtResource("1_7itfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+
+[node name="Cube" parent="piece3" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("2_xool8")
+
+[node name="piece4" parent="." instance=ExtResource("1_7itfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+
+[node name="Cube" parent="piece4" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("2_xool8")
+
+[node name="piece5" parent="." instance=ExtResource("1_7itfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+
+[node name="Cube" parent="piece5" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("2_xool8")
+
+[node name="piece6" parent="." instance=ExtResource("1_7itfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+
+[node name="Cube" parent="piece6" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("2_xool8")
+
+[node name="piece7" parent="." instance=ExtResource("1_7itfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 0)
+
+[node name="Cube" parent="piece7" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("2_xool8")
+
+[editable path="piece"]
+[editable path="piece2"]
+[editable path="piece3"]
+[editable path="piece4"]
+[editable path="piece5"]
+[editable path="piece6"]
+[editable path="piece7"]

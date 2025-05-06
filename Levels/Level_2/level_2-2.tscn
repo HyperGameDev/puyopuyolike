@@ -1,0 +1,341 @@
+[gd_scene load_steps=14 format=3 uid="uid://b5l7go08my3i"]
+
+[ext_resource type="PackedScene" uid="uid://dqh8vsvr351qq" path="res://Levels/Level_2/level_2.tscn" id="1_2rvc5"]
+[ext_resource type="Script" uid="uid://dl00o7scc1gk0" path="res://Levels/Level_2/level_2.gd" id="1_7ydbi"]
+[ext_resource type="PackedScene" uid="uid://bro1ybx07sfir" path="res://Objects/Meshes/piece_mesh.tscn" id="2_1sixj"]
+[ext_resource type="Script" uid="uid://bvcqdfwdaaejr" path="res://Objects/Boundary/background_mid_shadow.gd" id="2_o0pdb"]
+[ext_resource type="Material" uid="uid://c5b7uiiavapc2" path="res://Objects/Textures/color_dirt.tres" id="3_he3aw"]
+[ext_resource type="Material" uid="uid://ba3vefww0115k" path="res://Objects/Textures/color_bedrock.tres" id="3_hvkpb"]
+
+[sub_resource type="Animation" id="Animation_1sixj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Plane:material_overlay:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.784314)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Ground_Pieces/piece6:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.5, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Ground_Pieces/piece5:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Ground_Pieces/piece4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.5, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Ground_Pieces/piece3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.5, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Ground_Pieces/piece2:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Ground_Pieces/piece:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.5, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Ground_Pieces:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_hvkpb"]
+resource_name = "transition"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Plane:material_overlay:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.554785, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.784314), Color(0.19, 0.19, 0.19, 0.714)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Ground_Pieces/piece:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.40833, 2.63333),
+"transitions": PackedFloat32Array(1, 1.8025, 1),
+"update": 0,
+"values": [Vector3(-2.5, 0, 0), Vector3(-2.5, 0, 0), Vector3(-2.5, -19, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Ground_Pieces/piece2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.20833, 2.43333),
+"transitions": PackedFloat32Array(1, 1.8025, 1),
+"update": 0,
+"values": [Vector3(-1.5, 0, 0), Vector3(-1.5, 0, 0), Vector3(-1.5, -19, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Ground_Pieces/piece3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.01667, 2.16667),
+"transitions": PackedFloat32Array(1, 1.8025, 1),
+"update": 0,
+"values": [Vector3(-0.5, 0, 0), Vector3(-0.5, 0, 0), Vector3(-0.5, -19, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Ground_Pieces/piece4:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.716667, 1.9),
+"transitions": PackedFloat32Array(1, 1.8025, 1),
+"update": 0,
+"values": [Vector3(0.5, 0, 0), Vector3(0.5, 0, 0), Vector3(0.5, -19, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Ground_Pieces/piece5:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.383333, 1.63333),
+"transitions": PackedFloat32Array(1, 1.8025, 1),
+"update": 0,
+"values": [Vector3(1.5, 0, 0), Vector3(1.5, 0, 0), Vector3(1.5, -19, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Ground_Pieces/piece6:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.36667),
+"transitions": PackedFloat32Array(1.8025, 1),
+"update": 0,
+"values": [Vector3(2.5, 0, 0), Vector3(2.5, -19, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Ground_Pieces:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2.6988),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("..")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_my_transition_ended"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pswfp"]
+_data = {
+&"RESET": SubResource("Animation_1sixj"),
+&"transition": SubResource("Animation_hvkpb")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o0pdb"]
+render_priority = 1
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.784314)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uxulk"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_llvry"]
+_surfaces = [{
+"aabb": AABB(-3.71396e-06, 28.9093, -2.9774, 1e-05, 18.5597, 6.0365),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(218, 0, 255, 255, 255, 255, 0, 0, 222, 35, 0, 0, 0, 0, 0, 0, 185, 36, 0, 0, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_oakim"]
+resource_name = "background_mid_shadow_Plane"
+_surfaces = [{
+"aabb": AABB(-3.71396e-06, 28.9093, -2.9774, 1e-05, 18.5597, 6.0365),
+"attribute_data": PackedByteArray(0, 0, 255, 255, 65, 51, 113, 150, 65, 51, 254, 255, 0, 0, 113, 150),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_uxulk"),
+"primitive": 3,
+"uv_scale": Vector4(41.3281, 5.70313, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(218, 0, 255, 255, 255, 255, 84, 213, 222, 35, 0, 0, 0, 0, 84, 213, 185, 36, 0, 0, 255, 255, 84, 213, 0, 0, 255, 255, 0, 0, 84, 213, 170, 170, 84, 85, 170, 170, 84, 85, 170, 170, 84, 85, 170, 170, 84, 85)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_llvry")
+
+[node name="Level_2-2" type="Node3D"]
+script = ExtResource("1_7ydbi")
+my_level = 2
+
+[node name="Animation_Level" type="AnimationPlayer" parent="."]
+root_node = NodePath("../background_mid_shadow")
+libraries = {
+&"": SubResource("AnimationLibrary_pswfp")
+}
+
+[node name="Ground_Pieces" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8, 14, 1)
+
+[node name="piece" parent="Ground_Pieces" instance=ExtResource("2_1sixj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+
+[node name="Cube" parent="Ground_Pieces/piece" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("3_hvkpb")
+
+[node name="piece2" parent="Ground_Pieces" instance=ExtResource("2_1sixj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
+
+[node name="Cube" parent="Ground_Pieces/piece2" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("3_hvkpb")
+
+[node name="piece3" parent="Ground_Pieces" instance=ExtResource("2_1sixj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+
+[node name="Cube" parent="Ground_Pieces/piece3" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("3_hvkpb")
+
+[node name="piece4" parent="Ground_Pieces" instance=ExtResource("2_1sixj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+
+[node name="Cube" parent="Ground_Pieces/piece4" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("3_hvkpb")
+
+[node name="piece5" parent="Ground_Pieces" instance=ExtResource("2_1sixj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+
+[node name="Cube" parent="Ground_Pieces/piece5" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("3_hvkpb")
+
+[node name="piece6" parent="Ground_Pieces" instance=ExtResource("2_1sixj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+
+[node name="Cube" parent="Ground_Pieces/piece6" index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("3_hvkpb")
+
+[node name="background_mid_shadow" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.742, -33.615, 0.1)
+script = ExtResource("2_o0pdb")
+
+[node name="Plane" type="MeshInstance3D" parent="background_mid_shadow"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+material_overlay = SubResource("StandardMaterial3D_o0pdb")
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_oakim")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("3_he3aw")
+
+[node name="Level_2" parent="." instance=ExtResource("1_2rvc5")]
+
+[editable path="Ground_Pieces/piece"]
+[editable path="Ground_Pieces/piece2"]
+[editable path="Ground_Pieces/piece3"]
+[editable path="Ground_Pieces/piece4"]
+[editable path="Ground_Pieces/piece5"]
+[editable path="Ground_Pieces/piece6"]
+[editable path="Level_2"]

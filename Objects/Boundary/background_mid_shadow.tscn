@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://30w3yb0r8kj5"]
+
+[ext_resource type="PackedScene" uid="uid://b45wb0suwy5wv" path="res://Objects/Boundary/background_mid_shadow.blend" id="1_acwva"]
+[ext_resource type="Script" uid="uid://bvcqdfwdaaejr" path="res://Objects/Boundary/background_mid_shadow.gd" id="2_5j0dq"]
+[ext_resource type="Material" uid="uid://c5b7uiiavapc2" path="res://Objects/Textures/color_dirt.tres" id="2_fk2i1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qwutr"]
+render_priority = 1
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.784314)
+
+[node name="background_mid_shadow" instance=ExtResource("1_acwva")]
+script = ExtResource("2_5j0dq")
+
+[node name="Plane" parent="." index="0"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+material_overlay = SubResource("StandardMaterial3D_qwutr")
+cast_shadow = 0
+surface_material_override/0 = ExtResource("2_fk2i1")

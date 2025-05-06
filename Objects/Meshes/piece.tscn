@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bro1ybx07sfir"]
-
-[ext_resource type="PackedScene" uid="uid://bw5w0to131sij" path="res://Objects/Meshes/piece.blend" id="1_nob4v"]
-
-[node name="piece" instance=ExtResource("1_nob4v")]

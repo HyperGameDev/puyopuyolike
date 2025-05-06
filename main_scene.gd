@@ -40,6 +40,7 @@ func add_piece(parent: Node3D,piece_type: Piece.piece_types) -> Node3D:
 
 func setup_bottom_piece(piece_to_add: Node3D) -> void:
 	piece_to_add.position = spawn_pos_playable_piece
+	piece_to_add.random_color(piece_to_add)
 	
 	var component_to_add: Node3D
 	component_to_add = add_component(piece_to_add,Globals.COMPONENTS["bottomPiece"].instantiate())
@@ -49,7 +50,8 @@ func setup_bottom_piece(piece_to_add: Node3D) -> void:
 
 func setup_top_piece(piece_to_add: Node3D, _parent: Node3D) -> void:
 	piece_to_add.position.y += 1.
-	piece_to_add.assign_color(piece_to_add,Globals.DEBUG_MATERIAL_TOP_PIECE)
+	piece_to_add.random_color(piece_to_add)
+	#piece_to_add.assign_color(piece_to_add,Globals.DEBUG_MATERIAL_TOP_PIECE)
 	
 	var component_to_add: Node3D
 	component_to_add = add_component(piece_to_add,Globals.COMPONENTS["topPiece"].instantiate())

@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqh8vsvr351qq"]
+
+[ext_resource type="PackedScene" uid="uid://crbnmipvmmh0a" path="res://Objects/Boundary/ground_pieces.tscn" id="1_0qv2m"]
+[ext_resource type="PackedScene" uid="uid://dk5hiodkmbe7k" path="res://Objects/Boundary/wall_pieces.tscn" id="2_ne1b7"]
+
+[node name="Level_2" type="Node3D"]
+
+[node name="Box" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8, 0, 1)
+
+[node name="Ground_Pieces_L_top" parent="Box" instance=ExtResource("1_0qv2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 9, 0)
+
+[node name="Ground_Pieces_R_top" parent="Box" instance=ExtResource("1_0qv2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 9, 0)
+
+[node name="Wall_Pieces_L" parent="Box" instance=ExtResource("2_ne1b7")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -3.5, 2, 0)
+
+[node name="Wall_Pieces_R" parent="Box" instance=ExtResource("2_ne1b7")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 3.5, 2, 0)
+
+[node name="Ground_Pieces_L_bottom" parent="Box" instance=ExtResource("1_0qv2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -5, 0)
+
+[node name="Ground_Pieces_R_bottom" parent="Box" instance=ExtResource("1_0qv2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -5, 0)

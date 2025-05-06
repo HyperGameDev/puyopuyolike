@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://bro1ybx07sfir"]
+
+[ext_resource type="PackedScene" uid="uid://bw5w0to131sij" path="res://Objects/Meshes/piece_mesh.blend" id="1_nob4v"]
+[ext_resource type="Material" uid="uid://cd3bh5okfad4l" path="res://Objects/Textures/color_grass.tres" id="2_ialfj"]
+[ext_resource type="Material" uid="uid://baetw57klt48o" path="res://Objects/Textures/color_dirt_grass.tres" id="3_8yalj"]
+[ext_resource type="Material" uid="uid://c5b7uiiavapc2" path="res://Objects/Textures/color_dirt.tres" id="4_m33x1"]
+
+[node name="piece" instance=ExtResource("1_nob4v")]
+
+[node name="Cube_Grass" parent="." index="1"]
+visible = false
+surface_material_override/0 = ExtResource("2_ialfj")
+surface_material_override/1 = ExtResource("3_8yalj")
+surface_material_override/2 = ExtResource("4_m33x1")

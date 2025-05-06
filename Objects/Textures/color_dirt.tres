@@ -1,0 +1,31 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://c5b7uiiavapc2"]
+
+[sub_resource type="Gradient" id="Gradient_sk6wa"]
+offsets = PackedFloat32Array(0, 0.0117647, 0.121569, 0.298039, 0.443137, 0.529412, 0.741176, 0.816406, 0.886275, 0.945313)
+colors = PackedColorArray(0.450648, 0.450648, 0.450648, 1, 0.5, 0.32175, 0.155, 1, 0.51, 0.2992, 0.102, 1, 0.59, 0.42952, 0.3068, 1, 0.54, 0.32517, 0.1242, 1, 0.6, 0.3372, 0.162, 1, 0.55, 0.36025, 0.1705, 1, 0.53, 0.261467, 0.106, 1, 0.64, 0.443093, 0.1856, 1, 0.54, 0.32274, 0.1566, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bb4ga"]
+noise_type = 2
+seed = 432
+frequency = 0.0578
+fractal_octaves = 1
+cellular_distance_function = 1
+cellular_jitter = 0.0
+cellular_return_type = 0
+domain_warp_amplitude = 29.485
+domain_warp_fractal_type = 0
+domain_warp_fractal_octaves = 1
+domain_warp_fractal_lacunarity = 5.64
+domain_warp_fractal_gain = 1.105
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bb4ga"]
+generate_mipmaps = false
+color_ramp = SubResource("Gradient_sk6wa")
+noise = SubResource("FastNoiseLite_bb4ga")
+
+[resource]
+shading_mode = 2
+diffuse_mode = 2
+albedo_texture = SubResource("NoiseTexture2D_bb4ga")
+metallic_specular = 0.0
+rim_tint = 1.0

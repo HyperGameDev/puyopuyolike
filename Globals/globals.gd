@@ -6,7 +6,7 @@ const COMPONENTS: Dictionary[String,PackedScene] = {
 	"pieceArea": preload("res://Components/component_piece_area.tscn")
 }
 
-const PIECE_SCENE: PackedScene = preload("res://Objects/piece.tscn")
+const PIECE_SCENE: PackedScene = preload("res://Objects/Pieces/piece.tscn")
 const PIECE_AREA_SCENE: PackedScene = preload("res://Components/component_piece_area.tscn")
 
 const DEBUG_MATERIAL_TOP_PIECE: StandardMaterial3D = preload("res://Materials/debug_material_piece_top.tres")

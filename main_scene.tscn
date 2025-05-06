@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cv6b23ll8hu0t"]
+[gd_scene load_steps=13 format=3 uid="uid://cv6b23ll8hu0t"]
 
 [ext_resource type="Script" uid="uid://b4amaa7rvuwrs" path="res://main_scene.gd" id="1_2c62f"]
-[ext_resource type="PackedScene" uid="uid://b5pstaskn4ac" path="res://Objects/piece.tscn" id="2_2c62f"]
+[ext_resource type="PackedScene" uid="uid://b5pstaskn4ac" path="res://Objects/Pieces/piece.tscn" id="2_2c62f"]
+[ext_resource type="PackedScene" uid="uid://dk5hiodkmbe7k" path="res://Objects/Boundary/wall_pieces.tscn" id="3_8mm7a"]
 [ext_resource type="Script" uid="uid://g7bmqq04j4hy" path="res://canvas_layer_debug.gd" id="3_gyfs4"]
+[ext_resource type="PackedScene" uid="uid://bwp50jnqt1dwa" path="res://Characters/Squirrel/Mesh/squirrel.tscn" id="4_d5x1h"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0f027"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -15,23 +17,23 @@ sky_material = SubResource("ProceduralSkyMaterial_0f027")
 sky = SubResource("Sky_2c62f")
 tonemap_mode = 2
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_2c62f"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hq1ik"]
+size = Vector3(1, 15, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_d5x1h"]
 size = Vector3(6, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_8mm7a"]
 size = Vector3(6, 1, 1)
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_2c62f"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_hq1ik"]
-size = Vector3(1, 14, 1)
-
 [node name="Main_Scene" type="Node3D"]
 script = ExtResource("1_2c62f")
 
 [node name="Grid" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3, 0, 1)
 
 [node name="Node_Piece2" parent="Grid" instance=ExtResource("2_2c62f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 0)
@@ -41,13 +43,11 @@ piece_type = 2
 
 [node name="Node_Piece" parent="Grid" instance=ExtResource("2_2c62f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0)
-visible = false
 fallen = true
 piece_type = 2
 
 [node name="Node_Piece3" parent="Grid" instance=ExtResource("2_2c62f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, 0)
-visible = false
 fallen = true
 piece_type = 2
 
@@ -103,68 +103,165 @@ piece_type = 2
 environment = SubResource("Environment_gyfs4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(-0.376224, 0.919818, 0.11131, -1.05027e-08, -0.120137, 0.992757, 0.926529, 0.373499, 0.0451984, 0, 0, 0)
+light_specular = 3.12
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8, 6.5, 1.6)
+transform = Transform3D(0.970296, -0.0585262, 0.234736, 0, 0.970296, 0.241922, -0.241922, -0.234736, 0.941474, 6.8, 6.5, 6)
+h_offset = 2.44
+v_offset = 3.7
 projection = 1
-size = 14.0
+size = 20.0
+near = 0.005
 
-[node name="Box" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8, 0, 1)
+[node name="Level_All" type="Node3D" parent="."]
 
-[node name="Mesh_Ceiling" type="MeshInstance3D" parent="Box"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0)
-mesh = SubResource("BoxMesh_d5x1h")
-skeleton = NodePath("")
-
-[node name="Mesh_Ground" type="MeshInstance3D" parent="Box"]
-mesh = SubResource("BoxMesh_8mm7a")
-skeleton = NodePath("")
-
-[node name="Ground" type="Area3D" parent="Box/Mesh_Ground"]
+[node name="Wall_L" type="Area3D" parent="Level_All"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0)
+transform = Transform3D(1, 6.35732e-08, 0, -6.35732e-08, 1, 0, 0, 0, 1, 6.8, 0, 1)
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/Mesh_Ground/Ground"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level_All/Wall_L"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -2.9, 6.5, 0)
+shape = SubResource("WorldBoundaryShape3D_2c62f")
+
+[node name="Wall_R" type="Area3D" parent="Level_All"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8, 0, 1)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level_All/Wall_R"]
+transform = Transform3D(1.31134e-07, -1, 0, 1, 1.31134e-07, 0, 0, 0, 1, 2.9, 6.5, 0)
+shape = SubResource("WorldBoundaryShape3D_2c62f")
+
+[node name="Ground" type="Area3D" parent="Level_All"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8, 13, 1)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level_All/Ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.4, 0)
 shape = SubResource("WorldBoundaryShape3D_2c62f")
 
-[node name="Mesh_Wall_L" type="MeshInstance3D" parent="Box"]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 3.5, 6.5, 0)
+[node name="Debug_Boundary" type="Node3D" parent="Level_All"]
+
+[node name="Mesh_Wall_L" type="MeshInstance3D" parent="Level_All/Debug_Boundary"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 3.3, 7, 1)
+visible = false
 mesh = SubResource("BoxMesh_hq1ik")
 skeleton = NodePath("")
 
-[node name="Wall_L" type="Area3D" parent="Box/Mesh_Wall_L"]
-unique_name_in_owner = true
-transform = Transform3D(-1, -1.50996e-07, 0, 1.50996e-07, -1, 0, 0, 0, 1, 3.4, -6.5, 0)
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/Mesh_Wall_L/Wall_L"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -3, -6.5, 0)
-shape = SubResource("WorldBoundaryShape3D_2c62f")
-
-[node name="Mesh_Wall_R" type="MeshInstance3D" parent="Box"]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -3.5, 6.5, 0)
+[node name="Mesh_Wall_R" type="MeshInstance3D" parent="Level_All/Debug_Boundary"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 10.3, 7, 1)
+visible = false
 mesh = SubResource("BoxMesh_hq1ik")
 skeleton = NodePath("")
 
-[node name="Wall_R" type="Area3D" parent="Box/Mesh_Wall_R"]
-unique_name_in_owner = true
-transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -3.4, -6.5, 0)
-collision_mask = 0
+[node name="Mesh_Ceiling" type="MeshInstance3D" parent="Level_All/Debug_Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8, 13, 1)
+visible = false
+mesh = SubResource("BoxMesh_d5x1h")
+skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/Mesh_Wall_R/Wall_R"]
-transform = Transform3D(1.31134e-07, -1, 0, 1, 1.31134e-07, 0, 0, 0, 1, 3, -6.5, 0)
-shape = SubResource("WorldBoundaryShape3D_2c62f")
+[node name="Mesh_Ceiling_L" type="MeshInstance3D" parent="Level_All/Debug_Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 14, 1)
+mesh = SubResource("BoxMesh_d5x1h")
+skeleton = NodePath("")
+
+[node name="Mesh_Ceiling_R" type="MeshInstance3D" parent="Level_All/Debug_Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8, 14, 1)
+mesh = SubResource("BoxMesh_d5x1h")
+skeleton = NodePath("")
+
+[node name="Mesh_Ground_L" type="MeshInstance3D" parent="Level_All/Debug_Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0, 1)
+mesh = SubResource("BoxMesh_d5x1h")
+skeleton = NodePath("")
+
+[node name="Mesh_Ground_R" type="MeshInstance3D" parent="Level_All/Debug_Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8, 0, 1)
+mesh = SubResource("BoxMesh_d5x1h")
+skeleton = NodePath("")
+
+[node name="Mesh_Ground" type="MeshInstance3D" parent="Level_All/Debug_Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8, 0, 1)
+visible = false
+mesh = SubResource("BoxMesh_8mm7a")
+skeleton = NodePath("")
+
+[node name="Level_1" type="Node3D" parent="."]
+
+[node name="Box" type="Node3D" parent="Level_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8, 0, 1)
+
+[node name="Wall_Pieces_L" parent="Level_1/Box" instance=ExtResource("3_8mm7a")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -3.5, 7, 0)
+
+[node name="Wall_Pieces_R" parent="Level_1/Box" instance=ExtResource("3_8mm7a")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 3.5, 7, 0)
+
+[node name="Ground_Pieces_Mid" type="Node3D" parent="Level_1/Box"]
+
+[node name="Level_2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14, 0)
+
+[node name="Box" type="Node3D" parent="Level_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8, 0, 1)
+
+[node name="Wall_Pieces_L" parent="Level_2/Box" instance=ExtResource("3_8mm7a")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -3.5, 7, 0)
+
+[node name="Wall_Pieces_R" parent="Level_2/Box" instance=ExtResource("3_8mm7a")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 3.5, 7, 0)
 
 [node name="CanvasLayer_Debug" type="CanvasLayer" parent="."]
 script = ExtResource("3_gyfs4")
 
 [node name="Button_Spawn" type="Button" parent="CanvasLayer_Debug"]
 unique_name_in_owner = true
-offset_right = 132.0
-offset_bottom = 52.0
-text = "New Piece"
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -54.0
+offset_right = -28.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "New
+Piece"
+
+[node name="squirrel" parent="." instance=ExtResource("4_d5x1h")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11, 15, 1)
+
+[node name="Score" type="Node3D" parent="."]
+
+[node name="Label_Time_Text" type="Label3D" parent="Score"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.72, 11.955, 1.515)
+offset = Vector2(-280, 0)
+text = "TIME"
+font_size = 80
+outline_size = 52
+horizontal_alignment = 0
+
+[node name="Label_Time_Value" type="Label3D" parent="Score"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.72, 11.295, 1.515)
+text = "MM:SS:MS"
+font_size = 80
+outline_size = 52
+
+[node name="Label_Score_Text" type="Label3D" parent="Score"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.72, 9.955, 1.515)
+offset = Vector2(-280, 0)
+text = "SCORE"
+font_size = 80
+outline_size = 52
+horizontal_alignment = 0
+
+[node name="Label_Score_Value" type="Label3D" parent="Score"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.72, 9.295, 1.515)
+text = "00000000"
+font_size = 80
+outline_size = 52

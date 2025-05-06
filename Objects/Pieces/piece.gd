@@ -6,6 +6,7 @@ signal ground_detected_by_main
 @warning_ignore("unused_signal")
 signal ground_detected_by_cushion
 
+@export var piece_mesh: MeshInstance3D
 
 var falling: bool = true
 @export var fallen: bool = false
@@ -20,4 +21,4 @@ var walled_state: walled_states
 enum walled_states {NEITHER,LEFT,RIGHT}
 
 static func assign_color(piece_to_change: Node3D, material: StandardMaterial3D) -> void:
-	piece_to_change.get_child(0).set_material_overlay(material)
+	piece_to_change.piece_mesh.set_material_overlay(material)

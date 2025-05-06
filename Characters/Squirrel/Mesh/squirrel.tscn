@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwp50jnqt1dwa"]
+
+[ext_resource type="PackedScene" uid="uid://de1lwrjtf2sja" path="res://Characters/Squirrel/Mesh/squirrel.blend" id="1_g07c2"]
+
+[node name="squirrel" instance=ExtResource("1_g07c2")]
+
+[node name="Squirrel_Ref" parent="." index="0"]
+lod_bias = 128.0

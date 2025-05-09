@@ -21,7 +21,7 @@ func _my_transition_ended() -> void:
 	ground_pieces.visible = true
 	SignalBus.any_transition_ended.emit(my_level)
 	
-func _on_any_transition_ended(level: int) -> void:
+func _on_any_transition_ended(level) -> void:
 	print("transition ended on ",my_level, " from ",level)
 	if level == my_level + 1:
 		ground_pieces.visible = true

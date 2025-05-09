@@ -15,7 +15,6 @@ var rotation_offset_right: Vector3
 
 func _ready() -> void:
 	piece.ground_detected_by_main.connect(_on_ground_detected_by_main)
-	#piece.ground_undetected_by_main.connect(_on_ground_undetected_by_main)
 	piece.ground_detected_by_cushion.connect(_on_ground_detected_by_cushion)
 	
 	bottom_piece = piece.get_parent()
@@ -34,13 +33,13 @@ func check_top_rotation() -> void:
 		for area: Area3D in %Area_Overlap.get_overlapping_areas():
 			match area.name:
 				"Wall_L":
-					bottom_piece.position.x += .5
+					bottom_piece.position.x += 1 
 					
 				"Wall_R":
-					bottom_piece.position.x -= .5
+					bottom_piece.position.x -= 1
 					
 				"Ground":
-					bottom_piece.position.y += .1
+					bottom_piece.position.y += 1
 					
 				_:
 					pass
@@ -85,28 +84,12 @@ func rotate_piece(direction: Vector3,new_position: rotate_positions) -> void:
 
 func _on_rotation_tween_finished() -> void: 
 	rotating = false
-	if component_bottom_piece.fall_state == component_bottom_piece.fall_states.FALLEN:
-		component_bottom_piece.piece_placed()
-	
-func _on_ground_detected_by_main() -> void:
-	is_juggling = false
-	
-	match component_bottom_piece.fall_state: 
-		component_bottom_piece.fall_states.FALLING:
-			component_bottom_piece.start_fallen_delay()
-		component_bottom_piece.fall_states.FALLEN:
-			print("TOP: piece placed (",piece.name,")")
-			component_bottom_piece.piece_placed()
+	#print("Rotating is ",rotating,"\r")
 
-	if not component_bottom_piece.downward_dash_allowed and not component_bottom_piece.fall_state == component_bottom_piece.fall_states.FALLEN:
-		print("TOP: piece dash-placed (",piece.name,")")
-		component_bottom_piece.piece_placed()
-			
-#func _on_ground_undetected_by_main() -> void:
-	#component_bottom_piece.idle_movement = true
+func _on_ground_detected_by_main() -> void:
+	print("Top Component: ",name,"'s MAIN sees the ground")
+	component_bottom_piece.idle_movement = false
 
 func _on_ground_detected_by_cushion() -> void:
+	print("Top Component: ",name,"'s CUSHION sees the ground")
 	component_bottom_piece.downward_dash_allowed = false
-	
-	if position.y > 1.:
-		is_juggling = true

@@ -87,7 +87,9 @@ func _on_rotation_tween_finished() -> void:
 	#print("Rotating is ",rotating,"\r")
 
 func _on_ground_detected_by_main() -> void:
-	bottom_piece.falling = false
+	print("Top Component: ",name,"'s MAIN sees the ground")
+	component_bottom_piece.idle_movement = false
 
 func _on_ground_detected_by_cushion() -> void:
-	component_bottom_piece.downward_movement_allowed = false
+	print("Top Component: ",name,"'s CUSHION sees the ground")
+	component_bottom_piece.downward_dash_allowed = false

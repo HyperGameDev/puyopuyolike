@@ -14,6 +14,7 @@ func _on_area_main_entered(area: Area3D) -> void:
 	match area.name:
 		"Ground":
 			piece_added_to.ground_detected_by_main.emit()
+			print("Area Component: ",piece_added_to.name,"'s MAIN sees the ground")
 
 		"Wall_L":
 			piece_added_to.walled_state = walled_states.LEFT
@@ -34,7 +35,8 @@ func _on_area_main_exited(area: Area3D) -> void:
 
 		_:
 			pass
-			
+
 func _on_area_cushion_entered(area: Area3D) -> void:
 	if area.name == "Ground":
 		piece_added_to.ground_detected_by_cushion.emit()
+		print("Area Component: ",piece_added_to.name,"'s CUSHION sees the ground")

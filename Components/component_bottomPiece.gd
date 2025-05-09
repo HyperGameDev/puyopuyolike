@@ -3,12 +3,15 @@ class_name Component_bottomPiece extends Component
 @onready var timer_idle_move: Timer = $Timer_Idle_Move
 @onready var timer_move_left_delay: Timer = $Timer_Move_Left_Delay
 @onready var timer_move_right_delay: Timer = $Timer_Move_Right_Delay
+@onready var timer_fallen_delay: Timer = $Timer_Fallen_Delay
 
 var component_top_piece: Component_topPiece
 
 var top_piece: Node3D
 
-const FALL_SPEED: float = .4
+var FALL_SPEED: float = .5
+
+var idle_movement: bool = true
 
 const MOVE_SPEED_HORIZ: float = 1.
 const BUTTON_HOLD_DELAY: float = .06
@@ -16,10 +19,10 @@ var moving_left: bool = false
 var moving_right: bool = false
 var moving_down: bool = false
 
-var downward_movement_allowed: bool = true
+var downward_dash_allowed: bool = true
 
 func _ready() -> void:
-	piece.ground_detected_by_cushion.connect(_on_ground_detected_by_main)
+	piece.ground_detected_by_main.connect(_on_ground_detected_by_main)
 	piece.ground_detected_by_cushion.connect(_on_ground_detected_by_cushion)
 	
 	timer_move_left_delay.timeout.connect(_on_move_delay_left_timeout)
@@ -44,7 +47,7 @@ static func is_greater_approx(a: float, b: float, tolerance: float = 0.1) -> boo
 	return a > b and (a - b) > tolerance
 	
 func _on_idle_move_timeout() -> void:
-	if piece.falling:
+	if idle_movement:
 		piece.position.y -= FALL_SPEED
 	else:
 		timer_idle_move.stop()
@@ -80,10 +83,10 @@ func directional_movement() -> void:
 				moving_right = true
 				timer_move_right_delay.start(BUTTON_HOLD_DELAY)
 			
-		if(Input.is_action_pressed("Down") and not moving_down) and downward_movement_allowed:
+		if(Input.is_action_pressed("Down") and not moving_down) and downward_dash_allowed:
 			moving_down = true
 			while(true):
-				if(not Input.is_action_pressed("Down") or not falling or not downward_movement_allowed): break
+				if(not Input.is_action_pressed("Down") or not falling or not downward_dash_allowed): break
 				
 				piece.position.y -= FALL_SPEED
 				
@@ -96,22 +99,25 @@ func near_wall(wall_state: walled_states) -> bool:
 #func near_ground() -> bool:
 			
 func _on_move_delay_left_timeout() -> void:
-	if moving_left and Input.is_action_pressed("Left") and not near_wall(walled_states.LEFT) and downward_movement_allowed:
+	if moving_left and Input.is_action_pressed("Left") and not near_wall(walled_states.LEFT) and downward_dash_allowed:
 		piece.position.x -= MOVE_SPEED_HORIZ
 		timer_move_left_delay.start(BUTTON_HOLD_DELAY)
 	else:
 		moving_left = false
 		
 func _on_move_delay_right_timeout() -> void:
-	if moving_right and Input.is_action_pressed("Right") and not near_wall(walled_states.RIGHT) and downward_movement_allowed:
+	if moving_right and Input.is_action_pressed("Right") and not near_wall(walled_states.RIGHT) and downward_dash_allowed:
 		piece.position.x += MOVE_SPEED_HORIZ
 		timer_move_right_delay.start(BUTTON_HOLD_DELAY)
 	else:
 		moving_right = false
 	
 func _on_ground_detected_by_main() -> void:
-	piece.falling = false
+	print("Bottom Component: ",name,"'s MAIN sees the ground")
+	idle_movement = false
+	pass
 	
 func _on_ground_detected_by_cushion() -> void:
-	downward_movement_allowed = false
+	print("Bottom Component: ",name,"'s CUSHION sees the ground")
+	downward_dash_allowed = false
 	

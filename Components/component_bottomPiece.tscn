@@ -11,5 +11,7 @@ script = ExtResource("1_suo6t")
 
 [node name="Timer_Move_Right_Delay" type="Timer" parent="."]
 
+[node name="Timer_Fallen_Delay" type="Timer" parent="."]
+
 [node name="DownwardTweens" type="Node3D" parent="."]
 unique_name_in_owner = true

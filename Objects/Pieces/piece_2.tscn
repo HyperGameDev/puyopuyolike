@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bai43fu0g6k3u"]
+
+[ext_resource type="Script" uid="uid://b1q1u7bnb2uxa" path="res://Objects/Pieces/piece_2.gd" id="1_ns5i5"]
+[ext_resource type="PackedScene" uid="uid://bro1ybx07sfir" path="res://Objects/Meshes/piece_mesh.tscn" id="2_phl73"]
+[ext_resource type="Material" uid="uid://cd3bh5okfad4l" path="res://Objects/Textures/color_grass.tres" id="3_dc3u5"]
+
+[node name="Node_Piece" type="Node3D"]
+script = ExtResource("1_ns5i5")
+
+[node name="piece" parent="." instance=ExtResource("2_phl73")]
+
+[node name="Cube" parent="piece" index="0"]
+lod_bias = 128.0
+surface_material_override/0 = ExtResource("3_dc3u5")
+
+[node name="Cube_Grass" parent="piece" index="1"]
+cast_shadow = 0
+
+[editable path="piece"]

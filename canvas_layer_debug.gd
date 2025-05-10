@@ -16,10 +16,11 @@ func _ready() -> void:
 	button_level.pressed.connect(_on_button_level_pressed)
 	
 func _on_button_spawn_pressed() -> void:
-	Globals.current_bottom_component.queue_free()
-	Globals.current_top_component.queue_free()
-	
-	Main_Scene.ref.spawn_piece(Piece.piece_types.BOTTOM)
+	pass
+	#Globals.current_bottom_component.queue_free()
+	#Globals.current_top_component.queue_free()
+	#
+	#Main_Scene.ref.spawn_piece(Piece.piece_types.BOTTOM)
 	
 func _on_button_level_pressed() -> void:
 	#Globals.level += 1

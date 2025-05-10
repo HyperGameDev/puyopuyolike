@@ -49,6 +49,8 @@ static func is_greater_approx(a: float, b: float, tolerance: float = 0.1) -> boo
 func _on_idle_move_timeout() -> void:
 	if idle_movement:
 		piece.position.y -= fall_speed
+		if Globals.collisions_seen > 0:
+			Globals.collisions_seen = 0
 	else:
 		timer_idle_move.stop()
 		
@@ -110,20 +112,15 @@ func _on_move_delay_right_timeout() -> void:
 	else:
 		moving_right = false
 	
-func piece_placed() -> void:
-	print("PIECE PLACED")
-	idle_movement = false
-	
-	Globals.current_bottom_component.queue_free()
-	Globals.current_top_component.queue_free()
-	Main_Scene.ref.spawn_piece(Piece.piece_types.BOTTOM)
+func try_placing_piece() -> void:
+	Globals.request_piece_placement(self)
 		
 func _on_ground_detected_by_main() -> void:
 	if not downward_dash_allowed:
-		piece_placed()
+		try_placing_piece()
 	
 func _on_ground_detected_by_cushion(detected: Area3D) -> void:
-	if Input.is_action_pressed("Down"):
+	if moving_down:
 		snap_to_ground(true,detected)
 		
 	downward_dash_allowed = false

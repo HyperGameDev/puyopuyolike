@@ -75,7 +75,6 @@ func choose_cw_direction() -> void:
 func rotate_piece(direction: Vector3,new_position: rotate_positions) -> void:
 	var tween: Tween = %RotationTweens.create_tween()
 	rotating = true
-	#print("\rRotating is ",rotating)
 	tween.finished.connect(_on_rotation_tween_finished)
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_LINEAR)
@@ -87,7 +86,7 @@ func _on_rotation_tween_finished() -> void:
 
 func _on_ground_detected_by_main() -> void:
 	if not component_bottom_piece.downward_dash_allowed:
-		component_bottom_piece.piece_placed()
+		component_bottom_piece.try_placing_piece()
 
 func _on_ground_detected_by_cushion(detected: Area3D) -> void:
 	if component_bottom_piece.moving_down:

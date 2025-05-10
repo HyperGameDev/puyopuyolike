@@ -3,6 +3,7 @@ class_name Main_Scene extends Node3D
 static var ref: Node3D
 
 @onready var grid: Node3D  = %Grid
+@onready var ground_area: Area3D = %Ground
 
 var spawn_pos_playable_piece: Vector3 = Vector3(3,13,0)
 
@@ -15,7 +16,7 @@ func _ready() -> void:
 	spawn_piece(Piece.piece_types.BOTTOM)
 	
 func spawn_piece(type_to_spawn: Piece.piece_types, parent: Node3D = grid) -> Node3D:
-	var piece_to_spawn: CharacterBody3D
+	var piece_to_spawn: Node3D
 	
 	match type_to_spawn:
 		Piece.piece_types.BOTTOM:
@@ -30,10 +31,10 @@ func spawn_piece(type_to_spawn: Piece.piece_types, parent: Node3D = grid) -> Nod
 	return piece_to_spawn
 
 func add_piece(parent: Node3D,piece_type: Piece.piece_types) -> Node3D:
-	var piece_to_add: CharacterBody3D = Globals.PIECE_SCENE.instantiate()
+	var piece_to_add: Node3D = Globals.PIECE_SCENE.instantiate()
 	parent.add_child(piece_to_add)
 	piece_to_add.piece_type = piece_type
-	#add_collision_areas(piece_to_add,piece_to_add)
+	add_collision_areas(piece_to_add,piece_to_add)
 	
 	return piece_to_add
 

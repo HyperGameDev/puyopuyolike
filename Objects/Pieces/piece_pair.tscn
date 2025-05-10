@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3e6xf84w5qlg"]
+
+[ext_resource type="Script" uid="uid://cj3ja3jev00n5" path="res://Objects/Pieces/piece_pair.gd" id="1_3gimx"]
+[ext_resource type="Script" uid="uid://c4hhauendnr6a" path="res://Objects/Pieces/static_topPiece.gd" id="2_2dcyy"]
+[ext_resource type="PackedScene" uid="uid://bai43fu0g6k3u" path="res://Objects/Pieces/piece_2.tscn" id="3_jiejo"]
+[ext_resource type="Script" uid="uid://dgwsm43j6at3f" path="res://Objects/Pieces/static_bottomPiece.gd" id="4_nmltr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u0ygc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2jcla"]
+
+[node name="Piece_Pair" type="CharacterBody3D"]
+script = ExtResource("1_3gimx")
+
+[node name="Collision_pairedTop" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_u0ygc")
+debug_color = Color(1, 0, 0.0166664, 1)
+
+[node name="Collision_pairedBottom" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_u0ygc")
+debug_color = Color(1, 0, 0.0166664, 1)
+
+[node name="Static_topPiece" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("2_2dcyy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Static_topPiece"]
+shape = SubResource("BoxShape3D_2jcla")
+disabled = true
+
+[node name="Node_Piece" parent="Static_topPiece" instance=ExtResource("3_jiejo")]
+
+[node name="Static_bottomPiece" type="CharacterBody3D" parent="."]
+script = ExtResource("4_nmltr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Static_bottomPiece"]
+shape = SubResource("BoxShape3D_2jcla")
+disabled = true
+
+[node name="Node_Piece" parent="Static_bottomPiece" instance=ExtResource("3_jiejo")]

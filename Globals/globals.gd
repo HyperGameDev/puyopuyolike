@@ -3,9 +3,9 @@ extends Node
 const LEVEL: int = 1
 var level: int = 1
 
-
-const PIECE_SCENE: PackedScene = preload("res://Objects/Pieces/piece.tscn")
-const PIECE_AREA_SCENE: PackedScene = preload("res://Components/component_piece_area.tscn")
+const PAIR_SCENE: PackedScene = preload("res://Objects/Pieces/piece_pair.tscn")
+#const PIECE_SCENE: PackedScene = preload("res://Objects/Pieces/piece.tscn")
+#const PIECE_AREA_SCENE: PackedScene = preload("res://Components/component_piece_area.tscn")
 
 const COMPONENTS: Dictionary[String,PackedScene] = {
 	"bottomPiece": preload("res://Components/component_bottomPiece.tscn"),
@@ -32,8 +32,13 @@ const GROUND_POS: float = 1.
 const WALL_L_POS: float = 1.
 const WALL_R_POS: float = 6.
 
-var current_bottom_component: Component_bottomPiece
-var current_top_component: Component_topPiece
+
+const PAIR_SPAWN_POS: Vector3 = Vector3(3,13,0)
+
+var current_pair_controller: CharacterBody3D
+var current_top_piece: CharacterBody3D
+var current_bottom_piece: CharacterBody3D
+
 
 func _ready() -> void:
 	SignalBus.restart.connect(_on_restart)

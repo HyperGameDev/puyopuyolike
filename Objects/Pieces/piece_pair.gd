@@ -1,21 +1,21 @@
-extends CharacterBody3D
+class_name Piece_Pair extends CharacterBody3D
 
-@onready var top_piece: StaticBody3D = $Static_topPiece
-@onready var bottom_piece: StaticBody3D = $Static_bottomPiece
-
-
-
-
+@onready var top_piece: CharacterBody3D = $Static_topPiece
+@onready var bottom_piece: CharacterBody3D = $Static_bottomPiece
 
 const SPEED: float = 10.0
 const FALL_SPEED: float = -1.5
+
+func _ready() -> void:
+	Globals.current_top_piece = top_piece
+	Globals.current_bottom_piece = bottom_piece
+	Globals.current_pair_controller = self
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += FALL_SPEED * delta
 		
 		if Input.is_action_pressed("Down"):
-			print("hello")
 			velocity.y += (FALL_SPEED * 100) * delta
 			
 		if Input.is_action_just_released("Down"):

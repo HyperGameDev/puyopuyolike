@@ -1,7 +1,6 @@
-extends StaticBody3D
+extends Piece_Single
 
-@onready var piece_mesh: Piece_Character = $Node_Piece
-@onready var collision: CollisionShape3D = $CollisionShape3D
+@onready var piece_mesh: Piece_Mesh = $Node_Piece
 @onready var collision_paired: CollisionShape3D = $"../Collision_pairedTop"
 
 const MOVE_SPEED_ROTATE: float = 0.1
@@ -51,3 +50,4 @@ func rotate_piece(new_position: Vector3, new_enum_position: rotate_positions) ->
 
 func _on_rotation_tween_finished() -> void: 
 	rotating = false
+	

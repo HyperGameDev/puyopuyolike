@@ -1,15 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgngfx0epvajl"]
+[gd_scene load_steps=3 format=3 uid="uid://btj78b1xgodqv"]
 
-[ext_resource type="Script" uid="uid://7rj1dsqf1coc" path="res://Components/component_top_piece.gd" id="1_dlbqa"]
+[ext_resource type="Script" uid="uid://7rj1dsqf1coc" path="res://Components/component_top_piece.gd" id="1_c3pl4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dlbqa"]
 size = Vector3(0.8, 0.8, 0.1)
 
-[node name="Component_topPiece" type="Node3D"]
-script = ExtResource("1_dlbqa")
-fallen = null
-piece_type = null
-piece_color = null
+[node name="body_Component_topPiece" type="CharacterBody3D"]
+script = ExtResource("1_c3pl4")
 
 [node name="Area_Overlap" type="Area3D" parent="."]
 unique_name_in_owner = true

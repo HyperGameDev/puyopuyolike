@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqusyjcmexd2r"]
+
+[ext_resource type="Script" uid="uid://cvpip3rm1cr24" path="res://Objects/Pieces/piece.gd" id="1_v1sou"]
+[ext_resource type="PackedScene" uid="uid://bro1ybx07sfir" path="res://Objects/Meshes/piece_mesh.tscn" id="2_wh5s6"]
+[ext_resource type="Material" uid="uid://cd3bh5okfad4l" path="res://Objects/Textures/color_grass.tres" id="3_cvlbe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aev4g"]
+
+[node name="Body_Piece" type="CharacterBody3D" node_paths=PackedStringArray("piece_mesh")]
+script = ExtResource("1_v1sou")
+piece_mesh = NodePath("piece/Cube")
+
+[node name="piece" parent="." instance=ExtResource("2_wh5s6")]
+
+[node name="Cube" parent="piece" index="0"]
+lod_bias = 128.0
+surface_material_override/0 = ExtResource("3_cvlbe")
+
+[node name="Cube_Grass" parent="piece" index="1"]
+cast_shadow = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_aev4g")
+
+[editable path="piece"]

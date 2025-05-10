@@ -1,4 +1,4 @@
-class_name Piece extends Node3D
+class_name Piece extends CharacterBody3D
 
 @warning_ignore("unused_signal")
 signal ground_detected_by_main

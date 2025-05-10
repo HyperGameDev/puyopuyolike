@@ -35,8 +35,6 @@ const WALL_R_POS: float = 6.
 var current_bottom_component: Component_bottomPiece
 var current_top_component: Component_topPiece
 
-var collisions_seen: int = 0
-
 func _ready() -> void:
 	SignalBus.restart.connect(_on_restart)
 	
@@ -44,14 +42,3 @@ func _on_restart() -> void:
 	Globals.level = LEVEL
 	get_tree().change_scene_to_file("res://main_scene.tscn")
 	#get_tree().reload_current_scene()
-	
-func request_piece_placement(requesting_component: Node3D) -> void:
-	collisions_seen += 1
-	if collisions_seen == 1:
-		print("new piece approved")
-		requesting_component.idle_movement = false
-		
-		Globals.current_bottom_component.queue_free()
-		Globals.current_top_component.queue_free()
-		Main_Scene.ref.spawn_piece(Piece.piece_types.BOTTOM)
-	

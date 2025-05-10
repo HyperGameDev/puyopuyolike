@@ -2,9 +2,11 @@ class_name Piece extends Node3D
 
 @warning_ignore("unused_signal")
 signal ground_detected_by_main
+@warning_ignore("unused_signal")
+signal ground_undetected_by_cushion
 
 @warning_ignore("unused_signal")
-signal ground_detected_by_cushion
+signal ground_detected_by_cushion(area: Area3D)
 
 @export var piece_mesh: MeshInstance3D
 

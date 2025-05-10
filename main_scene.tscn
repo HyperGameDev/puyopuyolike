@@ -392,11 +392,11 @@ shape = SubResource("WorldBoundaryShape3D_2c62f")
 
 [node name="Ground" type="Area3D" parent="Level_All"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8, 13, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8, 0, 1)
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level_All/Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 shape = SubResource("WorldBoundaryShape3D_2c62f")
 
 [node name="Debug_Boundary" type="Node3D" parent="Level_All"]

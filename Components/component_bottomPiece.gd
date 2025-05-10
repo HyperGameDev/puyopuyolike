@@ -9,7 +9,7 @@ var component_top_piece: Component_topPiece
 
 var top_piece: Node3D
 
-var FALL_SPEED: float = .5
+var fall_speed: float = .5
 
 var idle_movement: bool = true
 
@@ -29,7 +29,7 @@ func _ready() -> void:
 	timer_move_right_delay.timeout.connect(_on_move_delay_right_timeout)
 	
 	timer_idle_move.timeout.connect(_on_idle_move_timeout)
-	timer_idle_move.start(.5)
+	timer_idle_move.start(fall_speed)
 	
 	top_piece = Main_Scene.ref.spawn_piece(Piece.piece_types.TOP,piece)
 	component_top_piece = Globals.current_top_component
@@ -48,7 +48,7 @@ static func is_greater_approx(a: float, b: float, tolerance: float = 0.1) -> boo
 	
 func _on_idle_move_timeout() -> void:
 	if idle_movement:
-		piece.position.y -= FALL_SPEED
+		piece.position.y -= fall_speed
 	else:
 		timer_idle_move.stop()
 		
@@ -88,15 +88,13 @@ func directional_movement() -> void:
 			while(true):
 				if(not Input.is_action_pressed("Down") or not falling or not downward_dash_allowed): break
 				
-				piece.position.y -= FALL_SPEED
+				piece.position.y -= fall_speed
 				
 				await get_tree().create_timer(BUTTON_HOLD_DELAY/25).timeout
 			moving_down = false
 			
 func near_wall(wall_state: walled_states) -> bool:
 	return wall_state == piece.walled_state or wall_state == top_piece.walled_state
-	
-#func near_ground() -> bool:
 			
 func _on_move_delay_left_timeout() -> void:
 	if moving_left and Input.is_action_pressed("Left") and not near_wall(walled_states.LEFT) and downward_dash_allowed:
@@ -112,12 +110,32 @@ func _on_move_delay_right_timeout() -> void:
 	else:
 		moving_right = false
 	
-func _on_ground_detected_by_main() -> void:
-	print("Bottom Component: ",name,"'s MAIN sees the ground")
+func piece_placed() -> void:
+	print("PIECE PLACED")
 	idle_movement = false
-	pass
 	
-func _on_ground_detected_by_cushion() -> void:
-	print("Bottom Component: ",name,"'s CUSHION sees the ground")
+	Globals.current_bottom_component.queue_free()
+	Globals.current_top_component.queue_free()
+	Main_Scene.ref.spawn_piece(Piece.piece_types.BOTTOM)
+		
+func _on_ground_detected_by_main() -> void:
+	if not downward_dash_allowed:
+		piece_placed()
+	
+func _on_ground_detected_by_cushion(detected: Area3D) -> void:
+	if Input.is_action_pressed("Down"):
+		snap_to_ground(true,detected)
+		
 	downward_dash_allowed = false
 	
+func snap_to_ground(is_bottom: bool, ground: Area3D) -> void:
+	var tween: Tween = create_tween()
+	var ground_pos: float
+	
+	if is_bottom:
+		ground_pos = ground.position.y + 1
+	else:
+		ground_pos = ground.position.y + 2
+		
+	tween.tween_property(piece, "position:y", ground_pos, .01)
+		

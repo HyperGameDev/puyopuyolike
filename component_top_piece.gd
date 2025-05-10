@@ -84,12 +84,13 @@ func rotate_piece(direction: Vector3,new_position: rotate_positions) -> void:
 
 func _on_rotation_tween_finished() -> void: 
 	rotating = false
-	#print("Rotating is ",rotating,"\r")
 
 func _on_ground_detected_by_main() -> void:
-	print("Top Component: ",name,"'s MAIN sees the ground")
-	component_bottom_piece.idle_movement = false
+	if not component_bottom_piece.downward_dash_allowed:
+		component_bottom_piece.piece_placed()
 
-func _on_ground_detected_by_cushion() -> void:
-	print("Top Component: ",name,"'s CUSHION sees the ground")
+func _on_ground_detected_by_cushion(detected: Area3D) -> void:
+	if component_bottom_piece.moving_down:
+		component_bottom_piece.snap_to_ground(false,detected)
+		
 	component_bottom_piece.downward_dash_allowed = false
